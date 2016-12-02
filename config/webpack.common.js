@@ -7,7 +7,6 @@ const helpers = require('./helpers');
  */
 // problem with copy-webpack-plugin
 const AssetsPlugin = require('assets-webpack-plugin');
-const ContextReplacementPlugin = require('webpack/lib/ContextReplacementPlugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlElementsPlugin = require('./html-elements-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -16,14 +15,9 @@ const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
 const CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 
-/*
- * Webpack Constants
- */
-const HMR = helpers.hasProcessFlag('hot');
 const METADATA = {
-  title: 'ng2-admin - Angular 2 Admin Template',
-  description: 'Free Angular 2 and Bootstrap 4 Admin Template',
-  baseUrl: '/',
+  title: 'hotpot-admin - Vue.js 2 后台管理模板',
+  description: 'hot-pot Vue.js后台管理模板',
   isDevServer: helpers.isWebpackDevServer()
 };
 
@@ -72,7 +66,9 @@ module.exports = function (options) {
       // An array of directory names to be resolved to the current directory
       modules: [helpers.root('src'), 'node_modules'],
       alias: {
-        vue: 'vue/dist/vue.js'
+        vue: 'vue/dist/vue.js',
+        components: helpers.root('src/components'),
+        pages: helpers.root('src/pages')
       }
     },
 
@@ -85,7 +81,15 @@ module.exports = function (options) {
       rules: [
         {
           test: /\.vue$/,
-          loader: 'vue-loader'
+          loader: 'vue-loader',
+          options: {
+            loaders: {
+              css: ExtractTextPlugin.extract({
+                loader: 'css-loader',
+                fallbackLoader: 'vue-style-loader'
+              })
+            }
+          }
         },
         /*
          * Json loader support for *.json files.
@@ -107,20 +111,18 @@ module.exports = function (options) {
           // loaders: ['to-string-loader', 'css-loader']
           loaders: ['raw-loader']
         },
-
         {
           test: /\.scss$/,
           loaders: ['raw-loader', 'sass-loader']
         },
-
         {
-          test: /\.woff(2)?(\?v=.+)?$/, loader: 'url-loader?limit=10000&mimetype=application/font-woff'
+          test: /\.woff(2)?(\?v=.+)?$/,
+          loader: 'url-loader?name=static/[md5:hash:hex].[ext]&limit=10000&mimetype=application/font-woff'
         },
-
         {
-          test: /\.(ttf|eot|svg)(\?v=.+)?$/, loader: 'file-loader'
+          test: /\.(ttf|eot|svg)(\?v=.+)?$/,
+          loader: 'file-loader?name=static/[md5:hash:hex].[ext]'
         },
-
         /* Raw loader support for *.html
          * Returns file content as string
          *
@@ -131,12 +133,11 @@ module.exports = function (options) {
           loader: 'raw-loader',
           exclude: [helpers.root('src/index.html')]
         },
-
         /* File loader for supporting images, for example, in CSS files.
          */
         {
           test: /\.(jpg|png|gif)$/,
-          loader: 'file'
+          loader: 'file-loader?name=static/images/[md5:hash:hex].[ext]'
         }
       ]
     },
@@ -147,7 +148,7 @@ module.exports = function (options) {
      * See: http://webpack.github.io/docs/configuration.html#plugins
      */
     plugins: [
-      new ExtractTextPlugin({filename: 'initial.css', allChunks: true}),
+      new ExtractTextPlugin({filename: '[name].css', allChunks: true}),
 
       new AssetsPlugin({
         path: helpers.root('dist'),
@@ -165,20 +166,6 @@ module.exports = function (options) {
       new CommonsChunkPlugin({
         name: ['vendor'].reverse()
       }),
-
-
-      /**
-       * Plugin: ContextReplacementPlugin
-       * Description: Provides context to Angular's use of System.import
-       *
-       * See: https://webpack.github.io/docs/list-of-plugins.html#contextreplacementplugin
-       * See: https://github.com/angular/angular/issues/11580
-       */
-      new ContextReplacementPlugin(
-        // The (\\|\/) piece accounts for path separators in *nix and Windows
-        /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
-        helpers.root('src') // location of your src
-      ),
 
       /*
        * Plugin: CopyWebpackPlugin
@@ -274,5 +261,5 @@ module.exports = function (options) {
       clearImmediate: false,
       setImmediate: false
     }
-  };
+  }
 }
