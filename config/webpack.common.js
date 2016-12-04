@@ -14,6 +14,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
 const CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 const METADATA = {
   title: 'hotpot-admin - Vue.js 2 后台管理模板',
@@ -46,6 +47,8 @@ module.exports = function (options) {
      * See: http://webpack.github.io/docs/configuration.html#entry
      */
     entry: {
+      vendor: helpers.root('src/vendor.js'),
+      bootstrap: ['bootstrap-loader'],
       index: helpers.root('src/main.js')
     },
 
@@ -241,9 +244,10 @@ module.exports = function (options) {
       new LoaderOptionsPlugin({}),
 
       new webpack.ProvidePlugin({
-        $: "jquery",
-        jQuery: "jquery",
-        "window.jQuery": "jquery"
+        $: 'jquery',
+        jQuery: 'jquery',
+        jquery: 'jquery',
+        "window.jQuery": 'jquery'
       })
     ],
 

@@ -84,7 +84,6 @@ module.exports = function (env) {
      * See: http://webpack.github.io/docs/configuration.html#plugins
      */
     plugins: [
-
       /**
        * Plugin: WebpackMd5Hash
        * Description: Plugin to replace a standard webpack chunkhash with md5.
@@ -123,6 +122,8 @@ module.exports = function (env) {
         }
       }),
 
+      new OptimizeCssAssetsPlugin(),
+
       /**
        * Plugin: UglifyJsPlugin
        * Description: Minimize all JavaScript output of chunks.
@@ -150,30 +151,9 @@ module.exports = function (env) {
         beautify: false, //prod
         // mangle: { screw_ie8 : true, keep_fnames: true }, //prod
         mangle: false,
-        compress: { screw_ie8: true }, //prod
+        compress: {screw_ie8: true}, //prod
         comments: false //prod
       }),
-
-      /**
-       * Plugin: NormalModuleReplacementPlugin
-       * Description: Replace resources that matches resourceRegExp with newResource
-       *
-       * See: http://webpack.github.io/docs/list-of-plugins.html#normalmodulereplacementplugin
-       */
-
-      new NormalModuleReplacementPlugin(
-        /angular2-hmr/,
-        helpers.root('config/modules/angular2-hmr-prod.js')
-      ),
-
-      /**
-       * Plugin: IgnorePlugin
-       * Description: Don’t generate modules for requests matching the provided RegExp.
-       *
-       * See: http://webpack.github.io/docs/list-of-plugins.html#ignoreplugin
-       */
-
-      // new IgnorePlugin(/angular2-hmr/),
 
       /**
        * Plugin: CompressionPlugin
