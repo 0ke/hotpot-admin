@@ -156,6 +156,7 @@ module.exports = function (options) {
         aggregateTimeout: 300,
         poll: 1000
       },
+      inline: true,
       outputPath: helpers.root('dist')
     },
 

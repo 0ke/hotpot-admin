@@ -9,6 +9,9 @@
   <!-- Configured Head Tags  -->
   <%=webpackConfig.htmlElements.headTags %>
   <% } %>
+  <% if (htmlWebpackPlugin.options.metadata.isDevServer) { %>
+  <script src="/webpack-dev-server.js"></script>
+  <% } %>
 </head>
 <body>
 <div id="app"></div>
