@@ -49,7 +49,7 @@ module.exports = function (options) {
     entry: {
       vendor: helpers.root('src/vendor.js'),
       bootstrap: ['bootstrap-loader'],
-      index: helpers.root('src/main.js')
+      index: helpers.root('src/index.js')
     },
 
     /*
@@ -89,6 +89,10 @@ module.exports = function (options) {
             loaders: {
               css: ExtractTextPlugin.extract({
                 loader: 'css-loader',
+                fallbackLoader: 'vue-style-loader'
+              }),
+              scss: ExtractTextPlugin.extract({
+                loader: 'css-loader!sass-loader',
                 fallbackLoader: 'vue-style-loader'
               })
             }
@@ -247,7 +251,9 @@ module.exports = function (options) {
         $: 'jquery',
         jQuery: 'jquery',
         jquery: 'jquery',
-        "window.jQuery": 'jquery'
+        "window.jQuery": 'jquery',
+        Tether: "tether",
+        "window.Tether": "tether",
       })
     ],
 
