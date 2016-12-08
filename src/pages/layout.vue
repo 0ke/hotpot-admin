@@ -27,7 +27,7 @@
 
 <style lang="scss">
   @import "../scss/variables";
-  @import "../scss/core";
+  @import "../sass/main";
 
   .footer {
     position: absolute;
