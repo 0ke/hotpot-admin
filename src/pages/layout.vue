@@ -1,11 +1,18 @@
 <template>
-  <div>
+  <div class="container-fluid">
     <hp-page-top></hp-page-top>
 
-    <div style="padding-top:200px;">
-      <router-view></router-view>
-    </div>
+    <div class="row">
+      <div class="col-md-2">
+        <hp-aside></hp-aside>
+      </div>
+      <div class="col-md-10 al-main">
+        <div class="al-content">
 
+          <router-view></router-view>
+        </div>
+      </div>
+    </div>
     <footer class="footer">
       <div class="container">
         <span class="text-muted">Place sticky footer content here.</span>
@@ -16,11 +23,12 @@
 
 <script>
   import hpPageTop from './hp-page-top'
+  import hpAside from './hp-aside'
 
   export default {
     name: 'app',
     components: {
-      hpPageTop
+      hpPageTop, hpAside
     }
   }
 </script>

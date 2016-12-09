@@ -67,14 +67,14 @@ a.al-sidebar-list-link {
   text-shadow: none;
   font-size: 13px;
   text-decoration: none;
-  color: $sidebar-text;
+  color: $sidebar-text !important;
   line-height: 42px;
   white-space: nowrap;
   overflow: hidden;
   cursor: pointer;
   &:hover {
-    color: $primary;
-    b {
+    color: $primary !important;
+    .al-sidebar-menu-angle {
       color: $primary;
     }
   }
@@ -83,7 +83,7 @@ a.al-sidebar-list-link {
     width: 16px;
     display: inline-block;
   }
-  b {
+  .al-sidebar-menu-angle {
     display: block;
     opacity: 1;
     width: 14px;
@@ -159,7 +159,7 @@ a.al-sidebar-list-link {
   @include default-sublist();
 }
 
-.sidebar-hover-elem{
+.sidebar-hover-elem {
   width: 4px;
   background: $primary;
   position: absolute;
