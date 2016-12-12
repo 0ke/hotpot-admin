@@ -13,7 +13,8 @@
         <div class="al-user-profile float-xs-right">
           <div class="dropdown">
             <a data-toggle="dropdown">
-              <img src="http://placehold.it/100x100"/>
+              <!--<img src="http://placehold.it/100x100"/>-->
+              <img src="holder.js/45x45"/>
             </a>
 
             <ul class="top-dropdown-menu profile-dropdown dropdown-menu dropdown-menu-right">

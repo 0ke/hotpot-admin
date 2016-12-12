@@ -1,5 +1,12 @@
 <template>
   <div>
+    <div class="row card">
+      <h4 class="card-header">中国地图</h4>
+      <div class="card-block">
+        <chart :options="chinaMap"></chart>
+      </div>
+    </div>
+
     <chart :options="polar"></chart>
   </div>
 </template>
@@ -15,7 +22,31 @@
         data.push([r, i])
       }
 
+      let chinaMap = {
+        tooltip: {
+          trigger: 'item',
+          formatter: '{b}'
+        },
+        series: [
+          {
+            name: '中国',
+            type: 'map',
+            mapType: 'china',
+            selectedMode: 'multiple',
+            label: {
+              normal: {
+                show: true
+              },
+              emphasis: {
+                show: true
+              }
+            }
+          }
+        ]
+      }
+
       return {
+        chinaMap: chinaMap,
         polar: {
           title: {
             text: '极坐标双数值轴'
