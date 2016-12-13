@@ -187,6 +187,10 @@ module.exports = function (options) {
         from: 'src/assets',
         to: 'assets'
       }]),
+      new CopyWebpackPlugin([{
+        from: 'static',
+        to: 'static'
+      }]),
 
       /*
        * Plugin: HtmlWebpackPlugin
