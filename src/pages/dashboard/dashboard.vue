@@ -1,52 +1,39 @@
 <template>
   <div>
-    <div class="row card">
-      <h4 class="card-header">中国地图</h4>
-      <div class="card-block">
-        <chart :options="chinaMap"></chart>
+    <div class="row">
+      <div class="col-sm-6">
+        <visit-chart></visit-chart>
+      </div>
+      <div class="col-sm-6">
+        <calendar></calendar>
       </div>
     </div>
 
-    <chart :options="polar"></chart>
+    <div class="row card">
+      <h4 class="card-header">中国地图</h4>
+      <div class="card-block">
+        <chart :options="polar" weight="400" height="600"></chart>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+  import visitChart from './visit-chart'
+  import calendar from './calendar'
   export default {
     name: 'dashboard',
+    components: {visitChart, calendar},
     data: function () {
       let data = []
+
       for (let i = 0; i <= 360; i++) {
         let t = i / 180 * Math.PI
         let r = Math.sin(2 * t) * Math.cos(2 * t)
         data.push([r, i])
       }
 
-      let chinaMap = {
-        tooltip: {
-          trigger: 'item',
-          formatter: '{b}'
-        },
-        series: [
-          {
-            name: '中国',
-            type: 'map',
-            mapType: 'china',
-            selectedMode: 'multiple',
-            label: {
-              normal: {
-                show: true
-              },
-              emphasis: {
-                show: true
-              }
-            }
-          }
-        ]
-      }
-
       return {
-        chinaMap: chinaMap,
         polar: {
           title: {
             text: '极坐标双数值轴'

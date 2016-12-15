@@ -8,7 +8,6 @@
       </div>
       <div class="col-md-10 al-main">
         <div class="al-content">
-
           <router-view></router-view>
         </div>
       </div>

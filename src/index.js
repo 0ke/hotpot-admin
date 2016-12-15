@@ -3,12 +3,14 @@ import VueRouter from 'vue-router'
 import Axios from 'axios'
 import VueAxios from 'vue-axios'
 import BootstrapVue from 'bootstrap-vue'
-import ECharts from 'vue-echarts/dist/vue-echarts'
 
 Vue.use(VueRouter)
 Vue.use(BootstrapVue)
 Vue.use(VueAxios, Axios)
-Vue.component('chart', ECharts)
+
+// 组件
+import echarts from 'components/echarts'
+Vue.component('chart', echarts)
 
 import routes from './pages/routers'
 import app from './pages/layout'
