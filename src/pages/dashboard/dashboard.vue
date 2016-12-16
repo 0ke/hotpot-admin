@@ -5,7 +5,11 @@
         <visit-chart></visit-chart>
       </div>
       <div class="col-sm-6">
-        <calendar></calendar>
+        <div class="card">
+          <div class="card-block">
+            <calendar></calendar>
+          </div>
+        </div>
       </div>
     </div>
 

@@ -25,51 +25,37 @@
 <script>
   export default {
     data() {
-      var menus = [
-        {
-          title: '仪表盘NEW',
-          icon: 'fa fa-dashboard'
-        },
-        {
-          title: '组件',
-          icon: 'fa fa-gear',
-          collapsed: false,
-          subMenus: [
-            {
-              title: 'Mail'
-            },
-            {
-              title: 'Timeline'
-            },
-            {
-              title: 'Tree View'
-            }
-          ]
-        },
-        {
-          title: '图表',
-          icon: 'fa fa-bar-chart',
-          collapsed: false,
-          subMenus: [
-            {
-              title: 'Mail'
-            },
-            {
-              title: 'Timeline'
-            },
-            {
-              title: 'Tree View'
-            }
-          ]
-        }
-      ]
-
       return {
-        menus: menus
+        menus: []
       }
     },
+    beforeMount() {
+      // 根据 routes 输出菜单
+      var routes = this.$router.options.routes
+      var menus = [];
+
+      var recMenu = function (rs, ms) {
+        rs.forEach(function (r) {
+          var o = {
+            title: r.meta.title,
+            icon: r.meta.icon,
+            collapsed: false
+          }
+
+          if (r.children) {
+            o.subMenus = []
+            recMenu(r.children, o.subMenus)
+          }
+          ms.push(o)
+        })
+      }
+      recMenu(routes, menus)
+      this.menus = menus
+    },
     methods: {
-      toggleMenu(m) {
+      toggleMenu(m)
+      {
+        console.log(m)
         if (!m.subMenus) {
           return
         }

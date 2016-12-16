@@ -1,6 +1,5 @@
 <template>
   <div class="card">
-    <div class="card-header">访问量</div>
     <div class="card-block">
       <chart :options="visitChart" style="height: 300px;"></chart>
     </div>
@@ -12,6 +11,9 @@
     data: function () {
       return {
         visitChart: {
+          title: {
+            text: '访问量'
+          },
           tooltip: {
             trigger: 'axis'
           },
