@@ -13,7 +13,8 @@ export default [
     path: '/tables',
     meta: {
       title: 'Tables',
-      icon: 'fa fa-table'
+      icon: 'fa fa-table',
+      abstract: true
     },
     children: [
       {

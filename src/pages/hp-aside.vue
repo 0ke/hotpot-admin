@@ -43,6 +43,7 @@
             title: r.meta.title,
             icon: r.meta.icon,
             path: r.path,
+            abstract: r.meta.abstract,
             collapsed: false
           }
 
@@ -57,4 +58,5 @@
       this.menus = menus
     }
   }
+
 </script>
