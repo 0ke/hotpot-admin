@@ -2,21 +2,20 @@
   <div class="container-fluid">
     <hp-page-top></hp-page-top>
 
-    <div class="row">
-      <div class="col-md-2">
-        <hp-aside></hp-aside>
-      </div>
-      <div class="col-md-10 al-main">
+    <div class="page-wrapper">
+      <hp-aside></hp-aside>
+      <div class="content-wrapper">
         <div class="al-content">
           <router-view></router-view>
         </div>
       </div>
     </div>
-    <footer class="footer">
-      <div class="container">
-        <span class="text-muted">Place sticky footer content here.</span>
-      </div>
-    </footer>
+
+    <!--<footer class="footer">-->
+    <!--<div class="container">-->
+    <!--<span class="text-muted">Place sticky footer content here.</span>-->
+    <!--</div>-->
+    <!--</footer>-->
   </div>
 </template>
 
@@ -30,6 +29,7 @@
       hpPageTop, hpAside
     }
   }
+
 </script>
 
 <style lang="scss">

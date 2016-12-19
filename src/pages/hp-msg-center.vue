@@ -1,5 +1,5 @@
 <template>
-  <ul class="al-msg-center float-xs-right">
+  <ul class="al-msg-center">
     <li class="dropdown">
       <a href="javascript:void(0);" data-toggle="dropdown">
         <i class="fa fa-bell-o"></i><span>5</span>

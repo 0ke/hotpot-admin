@@ -24,5 +24,59 @@ export default [
         }
       }
     ]
+  },
+  {
+    path: 'multi-level',
+    meta: {
+      title: 'Multi-Level Menu',
+      icon: 'fa fa-sitemap',
+      abstract: true
+    },
+    children: [
+      {
+        path: 'multi-level',
+        meta: {
+          title: 'Second Level Item 1',
+          abstract: true
+        }
+      },
+      {
+        path: 'multi-level',
+        meta: {
+          title: 'Second Level Item 2',
+          abstract: true
+        }
+      },
+      {
+        path: 'multi-level',
+        meta: {
+          title: 'Second Level Item 3',
+          abstract: true
+        },
+        children: [
+          {
+            path: 'multi-level',
+            meta: {
+              title: 'Third Level Item 1',
+              abstract: true
+            }
+          },
+          {
+            path: 'multi-level',
+            meta: {
+              title: 'Third Level Item 2',
+              abstract: true
+            }
+          },
+          {
+            path: 'multi-level',
+            meta: {
+              title: 'Third Level Item 3',
+              abstract: true
+            }
+          }
+        ]
+      }
+    ]
   }
 ]

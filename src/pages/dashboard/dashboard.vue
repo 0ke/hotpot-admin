@@ -1,5 +1,85 @@
 <template>
   <div>
+    <div class="card-deck-wrapper">
+      <div class="card-deck">
+        <div class="card card-outline-primary">
+          <div class="card-header">
+            <div class="row">
+              <div class="col-xs-3">
+                <i class="fa fa-comments fa-5x"></i>
+              </div>
+              <div class="col-xs-9 text-xs-right">
+                <div class="huge">26</div>
+                <div>New Comments!</div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <span class="float-xs-left">View Details</span>
+            <span class="float-xs-right"><i class="fa fa-arrow-circle-right"></i></span>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+
+        <div class="card card-outline-success">
+          <div class="card-header">
+            <div class="row">
+              <div class="col-xs-3">
+                <i class="fa fa-tasks fa-5x"></i>
+              </div>
+              <div class="col-xs-9 text-xs-right">
+                <div class="huge">12</div>
+                <div>New Tasks!</div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <span class="float-xs-left">View Details</span>
+            <span class="float-xs-right"><i class="fa fa-arrow-circle-right"></i></span>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+
+        <div class="card card-outline-warning">
+          <div class="card-header">
+            <div class="row">
+              <div class="col-xs-3">
+                <i class="fa fa-shopping-cart fa-5x"></i>
+              </div>
+              <div class="col-xs-9 text-xs-right">
+                <div class="huge">124</div>
+                <div>New Orders!</div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <span class="float-xs-left">View Details</span>
+            <span class="float-xs-right"><i class="fa fa-arrow-circle-right"></i></span>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+
+        <div class="card card-outline-danger">
+          <div class="card-header">
+            <div class="row">
+              <div class="col-xs-3">
+                <i class="fa fa-support fa-5x"></i>
+              </div>
+              <div class="col-xs-9 text-xs-right">
+                <div class="huge">26</div>
+                <div>New Tickets!</div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <span class="float-xs-left">View Details</span>
+            <span class="float-xs-right"><i class="fa fa-arrow-circle-right"></i></span>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="row">
       <div class="col-sm-6">
         <visit-chart></visit-chart>
