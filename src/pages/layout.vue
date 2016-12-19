@@ -6,7 +6,7 @@
       <div class="col-md-2">
         <hp-aside></hp-aside>
       </div>
-      <div class="col-md-10 al-main">
+      <div class="col-md-10">
         <div class="al-content">
           <router-view></router-view>
         </div>

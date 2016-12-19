@@ -1,9 +1,10 @@
+$top-height: 55px;
+
 .page-top {
   background-color: $sidebar;
   position: fixed;
   z-index: 904;
   box-shadow: 2px 0px 3px rgba(0, 0, 0, 0.5);
-  height: 66px;
   width: 100%;
   min-width: $resMin;
   padding: 0 32px 0 40px;
@@ -13,7 +14,7 @@
   }
 }
 
-a.al-logo {
+a.logo {
   color: $sidebar-text;
   display: block;
   font-size: 24px;
@@ -21,25 +22,17 @@ a.al-logo {
   white-space: nowrap;
   float: left;
   outline: none !important;
-  line-height: 60px;
-
+  line-height: $top-height;
   span {
     color: $primary;
   }
 }
 
 .user-profile {
-  float: right;
-  min-width: 230px;
-  margin-top: 10px;
-}
-
-.al-user-profile {
+  width: 130px;
   margin-right: 12px;
   transition: all .15s ease-in-out;
   padding: 0;
-  width: 36px;
-  height: 36px;
   border: 0;
   opacity: 1;
   position: relative;
@@ -151,7 +144,7 @@ a.collapse-menu-link {
 }
 
 @media (max-width: $resXXS) {
-  .user-profile{
+  .user-profile {
     min-width: 136px;
   }
   a.refresh-data {
@@ -166,6 +159,6 @@ a.collapse-menu-link {
   }
 }
 
-.profile-toggle-link{
+.profile-toggle-link {
   cursor: pointer;
 }
