@@ -33,14 +33,5 @@
 </script>
 
 <style lang="scss">
-  @import "../scss/variables";
-  @import "../sass/main";
-
-  .footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    line-height: 40px;
-    background-color: $gray-lighter;
-  }
+  @import "../scss/main";
 </style>

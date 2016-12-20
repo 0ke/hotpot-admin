@@ -1,4 +1,4 @@
-@import 'theme/conf/mixins';
+@import '../scss/theme/conf/_mixins';
 @import 'theme/conf/colorScheme/mint';
-@import 'theme/conf/variables';
-@import 'theme/pace';
+@import '../scss/theme/conf/_variables';
+@import '../scss/theme/components/_pace';
