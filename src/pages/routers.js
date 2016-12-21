@@ -1,4 +1,5 @@
 import dashboard from './dashboard/dashboard'
+import bootstrapTable from './tables/bootstrap-table'
 
 export default [
   {
@@ -11,6 +12,7 @@ export default [
   },
   {
     path: '/tables',
+    component: bootstrapTable,
     meta: {
       title: 'Tables',
       icon: 'fa fa-table',
@@ -19,6 +21,7 @@ export default [
     children: [
       {
         path: '/bootstrap-table',
+        component: bootstrapTable,
         meta: {
           title: 'Bootstrap Table'
         }
