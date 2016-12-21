@@ -5,24 +5,24 @@
         <slot></slot>
       </div>
       <div class="columns btn-group"
-           :class="['columns-' + options.buttionsAlign, 'float-xs-' + options.buttionsAlign]">
+           :class="['columns-' + options.buttonsAlign, 'float-xs-' + options.buttonsAlign]">
         <button v-if="options.showPaginationSwitch"
                 class="btn" type="button" name="paginationSwitch"
-                :class="['btn-' + options.buttionsClass, 'btn-' + options.iconSize]"
+                :class="['btn-' + options.buttonsClass, 'btn-' + options.iconSize]"
                 :title="options.formatPaginationSwitch()"
                 @click="togglePagination">
           <i :class="[options.iconsPrefix, paginationSwitchIcon]"></i>
         </button>
         <button v-if="options.showRefresh"
                 class="btn" type="button" name="refresh"
-                :class="['btn-' + options.buttionsClass, 'btn-' + options.iconSize]"
+                :class="['btn-' + options.buttonsClass, 'btn-' + options.iconSize]"
                 :title="options.formatRefresh()"
                 @click="refresh">
           <i :class="[options.iconsPrefix, options.icons.refresh]"></i>
         </button>
         <button v-if="options.showToggle"
                 class="btn" type="button" name="toggle"
-                :class="['btn-' + options.buttionsClass, 'btn-' + options.iconSize]"
+                :class="['btn-' + options.buttonsClass, 'btn-' + options.iconSize]"
                 :title="options.formatToggle()"
                 @click="toggleView">
           <i :class="[options.iconsPrefix, options.icons.toggle]"></i>
@@ -31,7 +31,7 @@
              :title="options.formatColumns()">
           <button type="button" data-toggle="dropdown"
                   class="btn dropdown-toggle"
-                  :class="['btn-' + options.buttionsClass, 'btn-' + options.iconSize]">
+                  :class="['btn-' + options.buttonsClass, 'btn-' + options.iconSize]">
             <i :class="[options.iconsPrefix, options.icons.columns]"></i>
             <span class="caret"></span>
           </button>
@@ -167,7 +167,7 @@
                              type="radio">
                       <div v-else class="card-view">
                         <span v-if="options.showHeader" class="title">{{fieldColumns[j].title}}</span>
-                        <span class="value">{{item | fieldValue field i j}}</span>
+                        <span class="value">{{fieldValue(item,field,i,j)}}</span>
                       </div>
                     </template>
                   </div>
@@ -193,7 +193,7 @@
                   <td v-else
                       @click="onTdClick(item, fieldColumns[j].field, $event)"
                       @dblclick="onTdClick(item, fieldColumns[j].field, $event)">
-                    {{item | fieldValue field i j}}
+                    {{fieldValue(item,field,i,j)}}
                   </td>
                 </template>
               </template>
@@ -488,15 +488,15 @@
 
     iconSize: '',
     buttonsClass: 'default',
-    iconsPrefix: 'glyphicon', // glyphicon of fa (font awesome)
+    iconsPrefix: 'fa', // fa (font awesome)
     icons: {
-      paginationSwitchDown: 'glyphicon-collapse-down icon-chevron-down',
-      paginationSwitchUp: 'glyphicon-collapse-up icon-chevron-up',
-      refresh: 'glyphicon-refresh icon-refresh',
-      toggle: 'glyphicon-list-alt icon-list-alt',
-      columns: 'glyphicon-th icon-th',
-      detailOpen: 'glyphicon-plus icon-plus',
-      detailClose: 'glyphicon-minus icon-minus'
+      paginationSwitchDown: 'fa-caret-square-o-down',
+      paginationSwitchUp: 'fa-caret-square-o-up',
+      refresh: 'fa-refresh',
+      toggle: 'fa-list-alt',
+      columns: 'fa-th',
+      detailOpen: 'fa-plus',
+      detailClose: 'fa-minus'
     },
 
     rowStyle: function (row, index) {
@@ -579,22 +579,18 @@
       columns: {
         type: Array,
         required: true,
-        default: function () {
-          return [];
-        }
+        default: []
       },
       data: {
         type: Array,
-        default: function () {
-          return [];
-        }
+        default: []
       },
       options: {
         type: Object,
         default: DEFAULTS
       }
     },
-    data: function () {
+    data() {
       return {
         fieldColumns: {},
         header: {},
@@ -613,11 +609,9 @@
         }
       };
     },
-    created: function () {
-      this.options = Object.assign({}, DEFAULTS, this.options)
-      console.log(this.options)
-
-      debugger
+    created() {
+      // this.options = Object.assign({}, DEFAULTS, this.options)
+      // debugger
       this.initLocale();
       this.initTable();
       this.initHeader();
@@ -626,11 +620,13 @@
       this.initServer();
     },
     computed: {
-      paginationSwitchIcon: function () {
-        return this.options.icons[this.options.pagination ?
-          'paginationSwitchDown' : 'paginationSwitchUp'];
+      paginationSwitchIcon() {
+        return this.options.icons[this.options.pagination ? 'paginationSwitchDown' : 'paginationSwitchUp']
       },
-      toggleColumnsCount: function () {
+      formatPaginationSwitch() {
+        return this.options.formatPaginationSwitch()
+      },
+      toggleColumnsCount() {
         var count = 0;
         for (var i in this.fieldColumns) {
           if (!(this.fieldColumns[i].radio || this.fieldColumns[i].checkbox ||
@@ -641,7 +637,7 @@
         }
         return count;
       },
-      renderData: function () {
+      renderData() {
         var that = this,
           data = this.data.slice(this.pageFrom - 1, this.pageTo);
 
@@ -707,7 +703,7 @@
         this.$nextTick(this.resetView);
         return data;
       },
-      pageInfo: function () {
+      pageInfo() {
         var i, from, to,
           info = {};
         if (this.totalPages < 5) {
@@ -768,12 +764,12 @@
         }
         return info;
       },
-      columnsLength: function () {
+      columnsLength() {
         return Object.keys(this.fieldColumns).length;
       }
     },
     methods: {
-      initLocale: function () {
+      initLocale() {
         if (!this.options.locale) {
           return;
         }
@@ -791,7 +787,7 @@
           $.extend(this.options, BootstrapTable.locales[parts[0]]);
         }
       },
-      initTable: function () {
+      initTable() {
         var that = this,
           columns = {};
 
@@ -815,7 +811,7 @@
         this.searchText = this.options.searchText;
         this.timeoutId = 0;
       },
-      initHeader: function () {
+      initHeader() {
         var that = this,
           visibleColumns = {};
 
@@ -887,7 +883,7 @@
           });
         });
       },
-      onSort: function (column) {
+      onSort(column) {
         if (!this.options.sortable || !column.sortable) {
           return;
         }
@@ -907,7 +903,7 @@
         this.initSort();
         this.initBody();
       },
-      initSort: function () {
+      initSort() {
         var that = this,
           name = this.options.sortName,
           order = this.options.sortOrder === 'desc' ? -1 : 1,
@@ -973,7 +969,7 @@
           });
         }
       },
-      search: function (event) {
+      search(event) {
         var that = this;
         if (this.options.searchOnEnterKey && event.keyCode !== 13) {
           return;
@@ -988,7 +984,7 @@
           that.onSearch(event);
         }, this.options.searchTimeOut);
       },
-      onSearch: function (event) {
+      onSearch(event) {
         if (this.options.trimOnSearch) {
           this.searchText = this.searchText.trim();
         }
@@ -1002,11 +998,11 @@
         this.updatePagination();
         this.trigger('search', this.searchText);
       },
-      togglePagination: function () {
+      togglePagination() {
         this.options.pagination = !this.options.pagination;
         this.updatePagination();
       },
-      refresh: function (params) {
+      refresh(params) {
         if (params && params.url) {
           this.options.pageNumber = 1;
         }
@@ -1015,12 +1011,12 @@
 
         this.trigger('refresh', params);
       },
-      toggleView: function () {
+      toggleView() {
         this.options.cardView = !this.options.cardView;
         this.initBody();
         this.trigger('toggle', this.options.cardView);
       },
-      initPagination: function () {
+      initPagination() {
         if (this.options.sidePagination !== 'server') {
           this.options.totalRows = this.data.length;
         }
@@ -1045,7 +1041,7 @@
           this.pageTo = this.options.totalRows;
         }
       },
-      updatePagination: function () {
+      updatePagination() {
         this.initPagination();
         if (this.options.sidePagination === 'server') {
           this.initServer();
@@ -1053,7 +1049,7 @@
           this.initBody();
         }
       },
-      onPageListChange: function (event) {
+      onPageListChange(event) {
         var $this = $(event.currentTarget);
 
         this.options.pageSize = $this.text().toUpperCase() === this.options.formatAllRows().toUpperCase() ?
@@ -1061,7 +1057,7 @@
 
         this.updatePagination();
       },
-      onPagePre: function () {
+      onPagePre() {
         if (this.options.pageNumber - 1 === 0) {
           this.options.pageNumber = this.options.totalPages;
         } else {
@@ -1069,11 +1065,11 @@
         }
         this.updatePagination();
       },
-      onPageFirst: function () {
+      onPageFirst() {
         this.options.pageNumber = 1;
         this.updatePagination();
       },
-      onPageNumber: function (event) {
+      onPageNumber(event) {
         var number = +$(event.currentTarget).text();
         if (this.options.pageNumber === number) {
           return;
@@ -1081,11 +1077,11 @@
         this.options.pageNumber = number;
         this.updatePagination();
       },
-      onPageLast: function () {
+      onPageLast() {
         this.options.pageNumber = this.totalPages;
         this.updatePagination();
       },
-      onPageNext: function () {
+      onPageNext() {
         if ((this.options.pageNumber + 1) > this.options.totalPages) {
           this.options.pageNumber = 1;
         } else {
@@ -1093,13 +1089,13 @@
         }
         this.updatePagination();
       },
-      initBody: function (fixedScroll) {
+      initBody(fixedScroll) {
         if (!this.options.pagination || this.options.sidePagination === 'server') {
           this.pageFrom = 1;
           this.pageTo = this.data.length;
         }
       },
-      onCheckAllChange: function () {
+      onCheckAllChange() {
         var items = [];
         if (this.selected.all) {
           for (var i = this.pageFrom - 1; i < this.pageTo; i++) {
@@ -1109,7 +1105,7 @@
         this.selected.items = items;
         this.trigger(this.selected.all ? 'check-all' : 'uncheck-all');
       },
-      onCheckItemChange: function (item) {
+      onCheckItemChange(item) {
         this.selected.all = checkAllIndexOf(this.selected.type,
           this.selected.items, this.data, this.pageFrom - 1, this.pageTo);
 
@@ -1123,7 +1119,7 @@
           this.trigger(selected ? 'check' : 'uncheck', item);
         }
       },
-      onTdClick: function (item, field, e) {
+      onTdClick(item, field, e) {
         var column = this.fieldColumns[getFieldIndex(this.fieldColumns, field)],
           value = getItemField(item, field, this.options.escape);
 
@@ -1145,7 +1141,7 @@
           this.onCheckItemChange(item);
         }
       },
-      initServer: function (silent, query, url) {
+      initServer(silent, query, url) {
         var that = this,
           data = {},
           params = {
@@ -1226,7 +1222,7 @@
           this._xhr = $.ajax(request);
         }
       },
-      load: function (data) {
+      load(data) {
         var fixedScroll = false;
 
         if (this.options.sidePagination === 'server') {
@@ -1243,7 +1239,7 @@
         this.initPagination();
         this.initBody(fixedScroll);
       },
-      getVisibleFields: function () {
+      getVisibleFields() {
         var that = this,
           visibleFields = [];
 
@@ -1257,7 +1253,7 @@
         });
         return visibleFields;
       },
-      resetView: function () {
+      resetView() {
         var that = this,
           $el = $(this.$el);
 
@@ -1299,37 +1295,26 @@
           }
         });
       },
-      trigger: function (name) {
-        var args = Array.prototype.slice.call(arguments, 1);
+      fieldValue(item, field, i, j) {
+        var value = getItemField(item, field, this.options.escape),
+          column = this.fieldColumns[j];
 
+        return calculateObjectValue(column,
+        this.header.formatters[j], [value, item, i], value);
+      },
+      trigger(name) {
+        var args = Array.prototype.slice.call(arguments, 1);
         name += '.bs.table';
         console.log(name, args);
       }
-    },
-    filters: {
-      fieldValue: {
-        read(item, field, i, j) {
-          console.log(item)
-          debugger
-          var value = getItemField(item, field, this.options.escape),
-            column = this.fieldColumns[j];
-
-          return calculateObjectValue(column,
-            this.header.formatters[j], [value, item, i], value);
-        },
-        write(value) {
-          console.log(value)
-          return value
-        }
-      }
     }
-  };
+  }
 
-  BootstrapTable.defaults = DEFAULTS;
-  BootstrapTable.column_defaults = COLUMN_DEFAULTS;
-  BootstrapTable.locales = LOCALES;
+  BootstrapTable.defaults = DEFAULTS
+  BootstrapTable.column_defaults = COLUMN_DEFAULTS
+  BootstrapTable.locales = LOCALES
 
-  module.exports = BootstrapTable;
+  export default BootstrapTable
 </script>
 
 <style>
@@ -1654,4 +1639,11 @@
     height: 150px;
     overflow: hidden;
   }
+
+
+
+
+
+
+
 </style>
