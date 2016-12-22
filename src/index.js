@@ -23,6 +23,9 @@ const router = new VueRouter({
 
 // 取消 Vue 所有的日志与警告
 Vue.config.silent = true
+Vue.config.errorHandler = (err, vm) => {
+  console.error(err)
+}
 
 new Vue({
   router,

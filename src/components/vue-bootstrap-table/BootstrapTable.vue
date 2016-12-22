@@ -1,69 +1,69 @@
 <template>
   <div class="bootstrap-table">
     <div class="fixed-table-toolbar">
-      <div class="bs-bars" :class="'float-xs-' + options.toolbarAlign">
+      <div class="bs-bars" :class="'float-xs-' + opts.toolbarAlign">
         <slot></slot>
       </div>
       <div class="columns btn-group"
-           :class="['columns-' + options.buttonsAlign, 'float-xs-' + options.buttonsAlign]">
-        <button v-if="options.showPaginationSwitch"
+           :class="['columns-' + opts.buttonsAlign, 'float-xs-' + opts.buttonsAlign]">
+        <button v-if="opts.showPaginationSwitch"
                 class="btn" type="button" name="paginationSwitch"
-                :class="['btn-' + options.buttonsClass, 'btn-' + options.iconSize]"
-                :title="options.formatPaginationSwitch()"
+                :class="['btn-' + opts.buttonsClass, 'btn-' + opts.iconSize]"
+                :title="opts.formatPaginationSwitch()"
                 @click="togglePagination">
-          <i :class="[options.iconsPrefix, paginationSwitchIcon]"></i>
+          <i :class="[opts.iconsPrefix, paginationSwitchIcon]"></i>
         </button>
-        <button v-if="options.showRefresh"
+        <button v-if="opts.showRefresh"
                 class="btn" type="button" name="refresh"
-                :class="['btn-' + options.buttonsClass, 'btn-' + options.iconSize]"
-                :title="options.formatRefresh()"
+                :class="['btn-' + opts.buttonsClass, 'btn-' + opts.iconSize]"
+                :title="opts.formatRefresh()"
                 @click="refresh">
-          <i :class="[options.iconsPrefix, options.icons.refresh]"></i>
+          <i :class="[opts.iconsPrefix, opts.icons.refresh]"></i>
         </button>
-        <button v-if="options.showToggle"
+        <button v-if="opts.showToggle"
                 class="btn" type="button" name="toggle"
-                :class="['btn-' + options.buttonsClass, 'btn-' + options.iconSize]"
-                :title="options.formatToggle()"
+                :class="['btn-' + opts.buttonsClass, 'btn-' + opts.iconSize]"
+                :title="opts.formatToggle()"
                 @click="toggleView">
-          <i :class="[options.iconsPrefix, options.icons.toggle]"></i>
+          <i :class="[opts.iconsPrefix, opts.icons.toggle]"></i>
         </button>
-        <div v-if="options.showColumns" class="keep-open btn-group"
-             :title="options.formatColumns()">
+        <div v-if="opts.showColumns" class="keep-open btn-group"
+             :title="opts.formatColumns()">
           <button type="button" data-toggle="dropdown"
                   class="btn dropdown-toggle"
-                  :class="['btn-' + options.buttonsClass, 'btn-' + options.iconSize]">
-            <i :class="[options.iconsPrefix, options.icons.columns]"></i>
+                  :class="['btn-' + opts.buttonsClass, 'btn-' + opts.iconSize]">
+            <i :class="[opts.iconsPrefix, opts.icons.columns]"></i>
             <span class="caret"></span>
           </button>
           <ul class="dropdown-menu" role="menu">
             <li v-for="(column, i) in fieldColumns" @click.stop>
-              <label v-if="!(column.radio || column.checkbox || options.cardView && !column.cardVisible)">
+              <label v-if="!(column.radio || column.checkbox || opts.cardView && !column.cardVisible)">
                 <input type="checkbox" :data-field="column.filed"
-                       :disabled="toggleColumnsCount <= options.minimumCountColumns && column.visible"
+                       :disabled="toggleColumnsCount <= opts.minimumCountColumns && column.visible"
                        v-model="column.visible"> {{column.title}}
               </label>
             </li>
           </ul>
         </div>
       </div>
-      <div v-if="options.search" class=" search" :class="'float-xs-' + options.searchAlign">
-        <input class="form-control" :class="'input-' + options.iconSize"
-               type="text" :placeholder="options.formatSearch()"
+      <div v-if="opts.search" class=" search" :class="'float-xs-' + opts.searchAlign">
+        <input class="form-control" :class="'input-' + opts.iconSize"
+               type="text" :placeholder="opts.formatSearch()"
                v-model="searchText" @keyup="search($event)">
       </div>
     </div>
     <div class="fixed-table-container"
-         :style="{'padding-bottom': (options.height ? view.headerHeight : 0) + 'px', height: options.height + 'px'}">
-      <div class="fixed-table-header" v-if="options.showHeader && !options.cardView && options.height">
-        <table :class="options.classes">
+         :style="{'padding-bottom': (opts.height ? view.headerHeight : 0) + 'px', height: opts.height + 'px'}">
+      <div class="fixed-table-header" v-if="opts.showHeader && !opts.cardView && opts.height">
+        <table :class="opts.classes">
           <thead>
-          <tr v-for="_columns in columns">
-            <th v-if="!options.cardView && options.detailView"
+          <tr>
+            <th v-if="!opts.cardView && opts.detailView"
                 class="detail" :rowspan="columns.length">
               <div class="fht-cell"></div>
             </th>
             <template v-for="column in _columns">
-              <th v-if="!(!column.visible || options.cardView && !column.cardVisible)"
+              <th v-if="!(!column.visible || opts.cardView && !column.cardVisible)"
                   :title="column.titleTooltip"
                   :class="[{'bs-checkbox': column.checkbox || column.radio}, column.class]"
                   :style="column.style"
@@ -72,11 +72,11 @@
                   :data-field="column.field"
                   tabindex="0">
                 <div class="th-inner"
-                     :class="[{sortable: options.sortable && column.sortable}, options.sortName == column.field ? options.sortOrder : 'both']"
+                     :class="[{sortable: opts.sortable && column.sortable}, opts.sortName == column.field ? opts.sortOrder : 'both']"
                      @click="onSort(column)"
                      @keypress.enter="onSort(column)">
 
-                  <input v-if="column.checkbox && !options.singleSelect && options.checkboxHeader"
+                  <input v-if="column.checkbox && !opts.singleSelect && opts.checkboxHeader"
                          name="btSelectAll" type="checkbox" v-model="selected.all"
                          @change="onCheckAllChange">
 
@@ -96,18 +96,18 @@
              :style="{top: view.headerHeight + 1 + 'px'}">
           <div class="fixed-table-loading-bg"></div>
           <div class="fixed-table-loading-text">
-            {{options.formatLoadingMessage()}}
+            {{opts.formatLoadingMessage()}}
           </div>
         </div>
-        <table :class="options.classes">
-          <thead v-if="options.showHeader && !options.cardView && !options.height">
-          <tr v-for="_columns in columns">
-            <th v-if="!options.cardView && options.detailView"
+        <table :class="opts.classes">
+          <thead v-if="opts.showHeader && !opts.cardView && !opts.height">
+          <tr>
+            <th v-if="!opts.cardView && opts.detailView"
                 class="detail" rowspan="columns.length">
               <div class="fht-cell"></div>
             </th>
-            <template v-for="column in _columns">
-              <th v-if="!(!column.visible || options.cardView && !column.cardVisible)"
+            <template v-for="column in columns">
+              <th v-if="!(!column.visible || opts.cardView && !column.cardVisible)"
                   :title="column.titleTooltip"
                   :class="[{'bs-checkbox': column.checkbox || column.radio}, column.class]"
                   :style="column.style"
@@ -116,11 +116,11 @@
                   :data-field="column.field"
                   tabindex="0">
                 <div class="th-inner"
-                     :class="[{sortable: options.sortable && column.sortable}, options.sortName == column.field ? options.sortOrder : 'both']"
+                     :class="[{sortable: opts.sortable && column.sortable}, opts.sortName == column.field ? opts.sortOrder : 'both']"
                      @click="onSort(column)"
                      @keypress.enter="onSort(column)">
 
-                  <input v-if="column.checkbox && !options.singleSelect && options.checkboxHeader"
+                  <input v-if="column.checkbox && !opts.singleSelect && opts.checkboxHeader"
                          name="btSelectAll" type="checkbox" v-model="selected.all"
                          @change="onCheckAllChange">
 
@@ -137,36 +137,36 @@
           <tr v-for="(item, i) in renderData"
               :class="item.class"
               :data-index="i"
-              :data-uniqueid="item[options.uniqueId]">
+              :data-uniqueid="item[opts.uniqueId]">
 
-            <template v-if="!options.cardView && options.detailView">
+            <template v-if="!opts.cardView && opts.detailView">
               <td>
                 <a class="detail-icon" href="javascript:">
-                  <i :class="[options.iconsPrefix, icons.detailOpen]"></i>
+                  <i :class="[opts.iconsPrefix, icons.detailOpen]"></i>
                 </a>
               </td>
             </template>
 
-            <template v-if="options.cardView">
+            <template v-if="opts.cardView">
               <td :colspan="header.fields.length">
                 <div class="card-views">
                   <div v-for="(field, j) in header.fields" class="card-view"
                        :class="fieldColumns[j].class">
-                    <template v-if="!(!fieldColumns[j].visible || options.cardView && !fieldColumns[j].cardVisible)">
+                    <template v-if="!(!fieldColumns[j].visible || opts.cardView && !fieldColumns[j].cardVisible)">
                       <input v-if="fieldColumns[j].checkbox"
-                             :name="options.selectItemName"
+                             :name="opts.selectItemName"
                              :value="item"
                              v-model="selected.items"
                              @change="onCheckItemChange(item)"
                              type="checkbox">
                       <input v-else-if="fieldColumns[j].radio"
-                             :name="options.selectItemName"
+                             :name="opts.selectItemName"
                              :value="item"
                              v-model="selected.items"
                              @change="onCheckItemChange(item)"
                              type="radio">
                       <div v-else class="card-view">
-                        <span v-if="options.showHeader" class="title">{{fieldColumns[j].title}}</span>
+                        <span v-if="opts.showHeader" class="title">{{fieldColumns[j].title}}</span>
                         <span class="value">{{fieldValue(item,field,i,j)}}</span>
                       </div>
                     </template>
@@ -176,16 +176,16 @@
             </template>
             <template v-else>
               <template v-for="(field, j) in header.fields">
-                <template v-if="!(!fieldColumns[j].visible || options.cardView && !fieldColumns[j].cardVisible)">
+                <template v-if="!(!fieldColumns[j].visible || opts.cardView && !fieldColumns[j].cardVisible)">
                   <td v-if="fieldColumns[j].checkbox || fieldColumns[j].radio"
                       class="bs-checkbox" :class="fieldColumns[j].class">
                     <input v-if="fieldColumns[j].checkbox"
-                           :name="options.selectItemName"
+                           :name="opts.selectItemName"
                            :value="item"
                            v-model="selected.items"
                            @change="onCheckItemChange(item)"
                            type="checkbox">
-                    <input v-else :name="options.selectItemName"
+                    <input v-else :name="opts.selectItemName"
                            :value="item" v-model="selected.items"
                            @change="onCheckItemChange(item)"
                            type="radio">
@@ -201,55 +201,55 @@
           </tr>
           <tr v-if="!renderData.length" class="no-records-found">
             <td :colspan="columnsLength + 1">
-              {{options.formatNoMatches()}}
+              {{opts.formatNoMatches()}}
             </td>
           </tr>
           </tbody>
         </table>
       </div>
-      <div v-if="options.pagination" class="fixed-table-pagination">
-        <div class="pagination-detail" :class="'float-xs-' + options.paginationDetailHAlign">
+      <div v-if="opts.pagination" class="fixed-table-pagination">
+        <div class="pagination-detail" :class="'float-xs-' + opts.paginationDetailHAlign">
             <span class="pagination-info">
-                <template v-if="options.onlyInfoPagination">
-                {{options.formatDetailPagination(options.totalRows)}}
+                <template v-if="opts.onlyInfoPagination">
+                {{opts.formatDetailPagination(opts.totalRows)}}
                 </template>
                 <template v-else>
-                {{options.formatShowingRows(pageFrom, pageTo, options.totalRows)}}
+                {{opts.formatShowingRows(pageFrom, pageTo, opts.totalRows)}}
                 </template>
             </span>
-          <span v-if="!options.onlyInfoPagination" class="page-list">
-            {{options.formatRecordsPerPage('pageNumber').split('pageNumber')[0]}}
+          <span v-if="!opts.onlyInfoPagination" class="page-list">
+            {{opts.formatRecordsPerPage('pageNumber').split('pageNumber')[0]}}
               <span class="btn-group"
-                    :class="options.paginationVAlign == 'top' || options.paginationVAlign == 'both' ? 'dropdown' : 'dropup'">
+                    :class="opts.paginationVAlign == 'top' || opts.paginationVAlign == 'both' ? 'dropdown' : 'dropup'">
                 <button type="button" class="btn dropdown-toggle" data-toggle="dropdown"
-                        :class="['btn-' + options.buttonsClass, 'btn-' + options.iconSize]">
-                  <span class="page-size"> {{options.pageSize === options.totalRows ? options.formatAllRows() : options.pageSize}} </span>
+                        :class="['btn-' + opts.buttonsClass, 'btn-' + opts.iconSize]">
+                  <span class="page-size"> {{opts.pageSize === opts.totalRows ? opts.formatAllRows() : opts.pageSize}} </span>
                   <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu" role="menu">
                   <li class="dropdown-item"
-                      :class="{active: page == options.formatAllRows() || page == options.pageSize}"
-                      v-for="page in options.pageList"
+                      :class="{active: page == opts.formatAllRows() || page == opts.pageSize}"
+                      v-for="page in opts.pageList"
                       @click="onPageListChange">
                     <a href="javascript:">{{page}}</a>
                   </li>
                 </ul>
-              </span>{{options.formatRecordsPerPage('pageNumber').split('pageNumber')[1]}}</span>
+              </span>{{opts.formatRecordsPerPage('pageNumber').split('pageNumber')[1]}}</span>
         </div>
-        <div v-if="totalPages > 1" :class="'float-xs-' + options.paginationHAlign">
-          <ul class="pagination" :class="'pagination-' + options.iconSize">
+        <div v-if="totalPages > 1" :class="'float-xs-' + opts.paginationHAlign">
+          <ul class="pagination" :class="'pagination-' + opts.iconSize">
             <li class="page-item" @click="onPagePre">
-              <a href="javascript:" class="page-link">{{options.paginationPreText}}</a>
+              <a href="javascript:" class="page-link">{{opts.paginationPreText}}</a>
             </li>
             <li v-if="pageInfo.first" class="page-item"
-                :class="{active: 1 == options.pageNumber}"
+                :class="{active: 1 == opts.pageNumber}"
                 @click="onPageFirst">
               <a href="javascript:" class="page-link">1</a>
             </li>
             <li v-if="pageInfo.firstSeparator" class="page-first-separator disabled">
               <a href="javascript:" class="page-link">...</a>
             </li>
-            <li class="page-item" :class="{active: i == options.pageNumber}" v-for="i in pageInfo.list"
+            <li class="page-item" :class="{active: i == opts.pageNumber}" v-for="i in pageInfo.list"
                 @click="onPageNumber">
               <a href="javascript:" class="page-link">{{i}}</a>
             </li>
@@ -257,12 +257,12 @@
               <a href="javascript:" class="page-link">...</a>
             </li>
             <li v-if="pageInfo.last" class="page-item"
-                :class="{active: totalPages == options.pageNumber}"
+                :class="{active: totalPages == opts.pageNumber}"
                 @click="onPageLast">
               <a href="javascript:" class="page-link">{{totalPages}}</a>
             </li>
             <li class="page-item" @click="onPageNext">
-              <a href="javascript:" class="page-link">{{options.paginationNextText}}</a>
+              <a href="javascript:" class="page-link">{{opts.paginationNextText}}</a>
             </li>
           </ul>
         </div>
@@ -610,8 +610,6 @@
       };
     },
     created() {
-      // this.options = Object.assign({}, DEFAULTS, this.options)
-      // debugger
       this.initLocale();
       this.initTable();
       this.initHeader();
@@ -620,17 +618,20 @@
       this.initServer();
     },
     computed: {
+      opts() {
+        return Object.assign({}, DEFAULTS, this.options)
+      },
       paginationSwitchIcon() {
-        return this.options.icons[this.options.pagination ? 'paginationSwitchDown' : 'paginationSwitchUp']
+        return this.opts.icons[this.opts.pagination ? 'paginationSwitchDown' : 'paginationSwitchUp']
       },
       formatPaginationSwitch() {
-        return this.options.formatPaginationSwitch()
+        return this.opts.formatPaginationSwitch()
       },
       toggleColumnsCount() {
         var count = 0;
         for (var i in this.fieldColumns) {
           if (!(this.fieldColumns[i].radio || this.fieldColumns[i].checkbox ||
-            this.options.cardView && !this.fieldColumns[i].cardVisible) &&
+            this.opts.cardView && !this.fieldColumns[i].cardVisible) &&
             this.fieldColumns[i].visible) {
             count++;
           }
@@ -646,7 +647,7 @@
             style = {},
             csses = [];
 
-          style = calculateObjectValue(that.options, that.options.rowStyle, [item, i], style);
+          style = calculateObjectValue(that.opts, that.opts.rowStyle, [item, i], style);
 
           if (style && style.css) {
             for (key in style.css) {
@@ -657,7 +658,7 @@
           item.csses = csses;
         });
 
-        if (!this.options.maintainSelected) {
+        if (!this.opts.maintainSelected) {
           this.selected.all = false;
           this.selected.items = [];
         } else {
@@ -665,8 +666,8 @@
             this.selected.items, this.data, this.pageFrom - 1, this.pageTo);
         }
 
-        if (this.options.sidePagination !== 'server') {
-          var s = this.searchText && (this.options.escape ?
+        if (this.opts.sidePagination !== 'server') {
+          var s = this.searchText && (this.opts.escape ?
               escapeHTML(this.searchText) : this.searchText).toLowerCase();
 
           data = s ? $.grep(data, function (item, i) {
@@ -684,7 +685,7 @@
 
               var index = $.inArray(key, that.header.fields);
               if (index !== -1 && that.header.searchables[index] && (typeof value === 'string' || typeof value === 'number')) {
-                if (that.options.strictSearch) {
+                if (that.opts.strictSearch) {
                   if ((value + '').toLowerCase() === s) {
                     return true;
                   }
@@ -710,7 +711,7 @@
           from = 1;
           to = this.totalPages;
         } else {
-          from = this.options.pageNumber - 2;
+          from = this.opts.pageNumber - 2;
           to = from + 4;
           if (from < 1) {
             from = 1;
@@ -723,13 +724,13 @@
         }
 
         if (this.totalPages >= 6) {
-          if (this.options.pageNumber >= 3) {
+          if (this.opts.pageNumber >= 3) {
             info.first = true;
             from++;
           }
 
-          if (this.options.pageNumber >= 4) {
-            if (this.options.pageNumber == 4 || this.totalPages == 6 || this.totalPages == 7) {
+          if (this.opts.pageNumber >= 4) {
+            if (this.opts.pageNumber == 4 || this.totalPages == 6 || this.totalPages == 7) {
               from--;
             } else {
               info.firstSeparator = true;
@@ -739,14 +740,14 @@
           }
         }
 
-        if (this.totalPages >= 7 && this.options.pageNumber >= (this.totalPages - 2)) {
+        if (this.totalPages >= 7 && this.opts.pageNumber >= (this.totalPages - 2)) {
           from--;
         }
 
-        if (this.totalPages === 6 && this.options.pageNumber >= this.totalPages - 2) {
+        if (this.totalPages === 6 && this.opts.pageNumber >= this.totalPages - 2) {
           to++;
         } else if (this.totalPages >= 7 && (this.totalPages === 7 ||
-          this.options.pageNumber >= this.totalPages - 3)) {
+          this.opts.pageNumber >= this.totalPages - 3)) {
           to++;
         }
 
@@ -755,11 +756,11 @@
           info.list.push(i);
         }
 
-        if (this.totalPages >= 8 && this.options.pageNumber <= this.totalPages - 4) {
+        if (this.totalPages >= 8 && this.opts.pageNumber <= this.totalPages - 4) {
           info.lastSeparator = true;
         }
 
-        if (this.totalPages >= 6 && this.options.pageNumber <= this.totalPages - 3) {
+        if (this.totalPages >= 6 && this.opts.pageNumber <= this.totalPages - 3) {
           info.last = true;
         }
         return info;
@@ -770,28 +771,27 @@
     },
     methods: {
       initLocale() {
-        if (!this.options.locale) {
+        if (!this.opts.locale) {
           return;
         }
-        var parts = this.options.locale.split(/-|_/);
+        var parts = this.opts.locale.split(/-|_/);
         parts[0].toLowerCase();
         if (parts[1]) parts[1].toUpperCase();
-        if (BootstrapTable.locales[this.options.locale]) {
+        if (BootstrapTable.locales[this.opts.locale]) {
           // locale as requested
-          $.extend(this.options, BootstrapTable.locales[this.options.locale]);
+          $.extend(this.opts, BootstrapTable.locales[this.opts.locale]);
         } else if (BootstrapTable.locales[parts.join('-')]) {
           // locale with sep set to - (in case original was specified with _)
-          $.extend(this.options, BootstrapTable.locales[parts.join('-')]);
+          $.extend(this.opts, BootstrapTable.locales[parts.join('-')]);
         } else if (BootstrapTable.locales[parts[0]]) {
           // short locale language code (i.e. 'en')
-          $.extend(this.options, BootstrapTable.locales[parts[0]]);
+          $.extend(this.opts, BootstrapTable.locales[parts[0]]);
         }
       },
       initTable() {
         var that = this,
           columns = {};
 
-        this.options = $.extend({}, DEFAULTS, this.options);
         if (!Array.isArray(this.columns[0])) {
           this.columns = [this.columns];
         }
@@ -808,7 +808,7 @@
           });
         });
         this.fieldColumns = columns;
-        this.searchText = this.options.searchText;
+        this.searchText = this.opts.searchText;
         this.timeoutId = 0;
       },
       initHeader() {
@@ -835,7 +835,7 @@
               unitWidth = 'px',
               width = column.width;
 
-            if (column.width !== undefined && (!that.options.cardView)) {
+            if (column.width !== undefined && (!that.opts.cardView)) {
               if (typeof column.width === 'string') {
                 if (column.width.indexOf('%') !== -1) {
                   unitWidth = '%';
@@ -869,7 +869,7 @@
                 return;
               }
 
-              if (that.options.cardView && (!column.cardVisible)) {
+              if (that.opts.cardView && (!column.cardVisible)) {
                 return;
               }
 
@@ -884,18 +884,18 @@
         });
       },
       onSort(column) {
-        if (!this.options.sortable || !column.sortable) {
+        if (!this.opts.sortable || !column.sortable) {
           return;
         }
-        if (this.options.sortName === column.field) {
-          this.options.sortOrder = this.options.sortOrder === 'asc' ? 'desc' : 'asc';
+        if (this.opts.sortName === column.field) {
+          this.opts.sortOrder = this.opts.sortOrder === 'asc' ? 'desc' : 'asc';
         } else {
-          this.options.sortName = column.field;
-          this.options.sortOrder = column.order === 'asc' ? 'desc' : 'asc';
+          this.opts.sortName = column.field;
+          this.opts.sortOrder = column.order === 'asc' ? 'desc' : 'asc';
         }
-        this.trigger('sort', this.options.sortName, this.options.sortOrder);
+        this.trigger('sort', this.opts.sortName, this.opts.sortOrder);
 
-        if (this.options.sidePagination === 'server') {
+        if (this.opts.sidePagination === 'server') {
           this.initServer();
           return;
         }
@@ -905,12 +905,12 @@
       },
       initSort() {
         var that = this,
-          name = this.options.sortName,
-          order = this.options.sortOrder === 'desc' ? -1 : 1,
-          index = this.header.fields.indexOf(this.options.sortName);
+          name = this.opts.sortName,
+          order = this.opts.sortOrder === 'desc' ? -1 : 1,
+          index = this.header.fields.indexOf(this.opts.sortName);
 
         if (index !== -1) {
-          if (this.options.sortStable) {
+          if (this.opts.sortStable) {
             this.data.forEach(function (row, i) {
               if (!row.hasOwnProperty('_position')) row._position = i;
             });
@@ -920,8 +920,8 @@
             if (that.header.sortNames[index]) {
               name = that.header.sortNames[index];
             }
-            var aa = getItemField(a, name, that.options.escape),
-              bb = getItemField(b, name, that.options.escape),
+            var aa = getItemField(a, name, that.opts.escape),
+              bb = getItemField(b, name, that.opts.escape),
               value = calculateObjectValue(that.header, that.header.sorters[index], [aa, bb]);
 
             if (value !== undefined) {
@@ -936,7 +936,7 @@
               bb = '';
             }
 
-            if (that.options.sortStable && aa === bb) {
+            if (that.opts.sortStable && aa === bb) {
               aa = a._position;
               bb = b._position;
             }
@@ -971,7 +971,7 @@
       },
       search(event) {
         var that = this;
-        if (this.options.searchOnEnterKey && event.keyCode !== 13) {
+        if (this.opts.searchOnEnterKey && event.keyCode !== 13) {
           return;
         }
 
@@ -982,29 +982,29 @@
         clearTimeout(this.timeoutId); // doesn't matter if it's 0
         this.timeoutId = setTimeout(function () {
           that.onSearch(event);
-        }, this.options.searchTimeOut);
+        }, this.opts.searchTimeOut);
       },
       onSearch(event) {
-        if (this.options.trimOnSearch) {
+        if (this.opts.trimOnSearch) {
           this.searchText = this.searchText.trim();
         }
 
-        if (this.options.searchText === this.searchText) {
+        if (this.opts.searchText === this.searchText) {
           return;
         }
-        this.options.searchText = this.searchText;
+        this.opts.searchText = this.searchText;
 
-        this.options.pageNumber = 1;
+        this.opts.pageNumber = 1;
         this.updatePagination();
         this.trigger('search', this.searchText);
       },
       togglePagination() {
-        this.options.pagination = !this.options.pagination;
+        this.opts.pagination = !this.opts.pagination;
         this.updatePagination();
       },
       refresh(params) {
         if (params && params.url) {
-          this.options.pageNumber = 1;
+          this.opts.pageNumber = 1;
         }
         this.initServer(params && params.silent,
           params && params.query, params && params.url);
@@ -1012,38 +1012,38 @@
         this.trigger('refresh', params);
       },
       toggleView() {
-        this.options.cardView = !this.options.cardView;
+        this.opts.cardView = !this.opts.cardView;
         this.initBody();
-        this.trigger('toggle', this.options.cardView);
+        this.trigger('toggle', this.opts.cardView);
       },
       initPagination() {
-        if (this.options.sidePagination !== 'server') {
-          this.options.totalRows = this.data.length;
+        if (this.opts.sidePagination !== 'server') {
+          this.opts.totalRows = this.data.length;
         }
 
         this.totalPages = 0;
-        if (this.options.totalRows) {
-          if (this.options.pageSize === this.options.formatAllRows()) {
-            this.options.pageSize = this.options.totalRows;
+        if (this.opts.totalRows) {
+          if (this.opts.pageSize === this.opts.formatAllRows()) {
+            this.opts.pageSize = this.opts.totalRows;
           }
 
-          this.totalPages = ~~((this.options.totalRows - 1) / this.options.pageSize) + 1;
+          this.totalPages = ~~((this.opts.totalRows - 1) / this.opts.pageSize) + 1;
 
-          this.options.totalPages = this.totalPages;
+          this.opts.totalPages = this.totalPages;
         }
-        if (this.totalPages > 0 && this.options.pageNumber > this.totalPages) {
-          this.options.pageNumber = this.totalPages;
+        if (this.totalPages > 0 && this.opts.pageNumber > this.totalPages) {
+          this.opts.pageNumber = this.totalPages;
         }
 
-        this.pageFrom = (this.options.pageNumber - 1) * this.options.pageSize + 1;
-        this.pageTo = this.options.pageNumber * this.options.pageSize;
-        if (this.pageTo > this.options.totalRows) {
-          this.pageTo = this.options.totalRows;
+        this.pageFrom = (this.opts.pageNumber - 1) * this.opts.pageSize + 1;
+        this.pageTo = this.opts.pageNumber * this.opts.pageSize;
+        if (this.pageTo > this.opts.totalRows) {
+          this.pageTo = this.opts.totalRows;
         }
       },
       updatePagination() {
         this.initPagination();
-        if (this.options.sidePagination === 'server') {
+        if (this.opts.sidePagination === 'server') {
           this.initServer();
         } else {
           this.initBody();
@@ -1051,46 +1051,45 @@
       },
       onPageListChange(event) {
         var $this = $(event.currentTarget);
-
-        this.options.pageSize = $this.text().toUpperCase() === this.options.formatAllRows().toUpperCase() ?
-          this.options.formatAllRows() : +$this.text();
+        this.opts.pageSize = $this.text().toUpperCase() === this.opts.formatAllRows().toUpperCase() ?
+          this.opts.formatAllRows() : +$this.text();
 
         this.updatePagination();
       },
       onPagePre() {
-        if (this.options.pageNumber - 1 === 0) {
-          this.options.pageNumber = this.options.totalPages;
+        if (this.opts.pageNumber - 1 === 0) {
+          this.opts.pageNumber = this.opts.totalPages;
         } else {
-          this.options.pageNumber--;
+          this.opts.pageNumber--;
         }
         this.updatePagination();
       },
       onPageFirst() {
-        this.options.pageNumber = 1;
+        this.opts.pageNumber = 1;
         this.updatePagination();
       },
       onPageNumber(event) {
         var number = +$(event.currentTarget).text();
-        if (this.options.pageNumber === number) {
+        if (this.opts.pageNumber === number) {
           return;
         }
-        this.options.pageNumber = number;
+        this.opts.pageNumber = number;
         this.updatePagination();
       },
       onPageLast() {
-        this.options.pageNumber = this.totalPages;
+        this.opts.pageNumber = this.totalPages;
         this.updatePagination();
       },
       onPageNext() {
-        if ((this.options.pageNumber + 1) > this.options.totalPages) {
-          this.options.pageNumber = 1;
+        if ((this.opts.pageNumber + 1) > this.opts.totalPages) {
+          this.opts.pageNumber = 1;
         } else {
-          this.options.pageNumber++;
+          this.opts.pageNumber++;
         }
         this.updatePagination();
       },
       initBody(fixedScroll) {
-        if (!this.options.pagination || this.options.sidePagination === 'server') {
+        if (!this.opts.pagination || this.opts.sidePagination === 'server') {
           this.pageFrom = 1;
           this.pageTo = this.data.length;
         }
@@ -1113,7 +1112,7 @@
           this.trigger('check', item);
         } else {
           var selected = this.selected.items.indexOf(item) > -1;
-          if (this.options.singleSelect) {
+          if (this.opts.singleSelect) {
             this.selected.items = selected ? [item] : [];
           }
           this.trigger(selected ? 'check' : 'uncheck', item);
@@ -1121,13 +1120,13 @@
       },
       onTdClick(item, field, e) {
         var column = this.fieldColumns[getFieldIndex(this.fieldColumns, field)],
-          value = getItemField(item, field, this.options.escape);
+          value = getItemField(item, field, this.opts.escape);
 
         this.trigger(e.type === 'click' ? 'click-cell' : 'dbl-click-cell', field, value, item);
         this.trigger(e.type === 'click' ? 'click-row' : 'dbl-click-row', item, field);
 
         // if click to select - then trigger the checkbox/radio click
-        if (e.type === 'click' && this.options.clickToSelect && column.clickToSelect) {
+        if (e.type === 'click' && this.opts.clickToSelect && column.clickToSelect) {
           if (this.selected.type === 'radio') {
             this.selected.items = item;
           } else {
@@ -1146,33 +1145,33 @@
           data = {},
           params = {
             searchText: this.searchText,
-            sortName: this.options.sortName,
-            sortOrder: this.options.sortOrder
+            sortName: this.opts.sortName,
+            sortOrder: this.opts.sortOrder
           },
           request;
 
-        if (this.options.pagination) {
-          params.pageSize = this.options.pageSize === this.options.formatAllRows() ?
-            this.options.totalRows : this.options.pageSize;
-          params.pageNumber = this.options.pageNumber;
+        if (this.opts.pagination) {
+          params.pageSize = this.opts.pageSize === this.opts.formatAllRows() ?
+            this.opts.totalRows : this.opts.pageSize;
+          params.pageNumber = this.opts.pageNumber;
         }
 
-        if (!(url || this.options.url) && !this.options.ajax) {
+        if (!(url || this.opts.url) && !this.opts.ajax) {
           return;
         }
 
-        if (this.options.queryParamsType === 'limit') {
+        if (this.opts.queryParamsType === 'limit') {
           params = {
             search: params.searchText,
             sort: params.sortName,
             order: params.sortOrder
           };
 
-          if (this.options.pagination) {
-            params.offset = this.options.pageSize === this.options.formatAllRows() ?
-              0 : this.options.pageSize * (this.options.pageNumber - 1);
-            params.limit = this.options.pageSize === this.options.formatAllRows() ?
-              this.options.totalRows : this.options.pageSize;
+          if (this.opts.pagination) {
+            params.offset = this.opts.pageSize === this.opts.formatAllRows() ?
+              0 : this.opts.pageSize * (this.opts.pageNumber - 1);
+            params.limit = this.opts.pageSize === this.opts.formatAllRows() ?
+              this.opts.totalRows : this.opts.pageSize;
           }
         }
 
@@ -1180,7 +1179,7 @@
           params.filter = JSON.stringify(this.filterColumnsPartial, null);
         }
 
-        data = calculateObjectValue(this.options, this.options.queryParams, [params], data);
+        data = calculateObjectValue(this.opts, this.opts.queryParams, [params], data);
 
         $.extend(data, query || {});
 
@@ -1192,16 +1191,16 @@
         if (!silent) {
           this.loading = true;
         }
-        request = $.extend({}, calculateObjectValue(null, this.options.ajaxOptions), {
-          type: this.options.method,
-          url: url || this.options.url,
-          data: this.options.contentType === 'application/json' && this.options.method === 'post' ?
+        request = $.extend({}, calculateObjectValue(null, this.opts.ajaxOptions), {
+          type: this.opts.method,
+          url: url || this.opts.url,
+          data: this.opts.contentType === 'application/json' && this.opts.method === 'post' ?
             JSON.stringify(data) : data,
-          cache: this.options.cache,
-          contentType: this.options.contentType,
+          cache: this.opts.cache,
+          contentType: this.opts.contentType,
           dataType: this.dataType,
           success: function (res) {
-            res = calculateObjectValue(that.options, that.options.responseHandler, [res], res);
+            res = calculateObjectValue(that.opts, that.opts.responseHandler, [res], res);
 
             that.load(res);
             if (!silent) that.loading = false;
@@ -1213,8 +1212,8 @@
           }
         });
 
-        if (this.options.ajax) {
-          calculateObjectValue(this, this.options.ajax, [request], null);
+        if (this.opts.ajax) {
+          calculateObjectValue(this, this.opts.ajax, [request], null);
         } else {
           if (this._xhr && this._xhr.readyState !== 4) {
             this._xhr.abort();
@@ -1225,10 +1224,10 @@
       load(data) {
         var fixedScroll = false;
 
-        if (this.options.sidePagination === 'server') {
-          this.options.totalRows = data[this.options.responseTotalField];
+        if (this.opts.sidePagination === 'server') {
+          this.opts.totalRows = data[this.opts.responseTotalField];
           fixedScroll = data.fixedScroll;
-          data = data[this.options.responseRowsField];
+          data = data[this.opts.responseRowsField];
         } else if (!$.isArray(data)) { // support fixedScroll
           fixedScroll = data.fixedScroll;
           data = data.data;
@@ -1271,14 +1270,14 @@
           var field = that.header.fields[i],
             fieldIndex = that.getVisibleFields().indexOf(field);
 
-          if (that.options.detailView && !that.options.cardView) {
+          if (that.opts.detailView && !that.opts.cardView) {
             fieldIndex += 1;
           }
 
           for (var key in events) {
             $el.find('tbody >tr:not(.no-records-found)').each(function () {
               var $tr = $(this),
-                $td = $tr.find(that.options.cardView ? '.card-view' : 'td').eq(fieldIndex),
+                $td = $tr.find(that.opts.cardView ? '.card-view' : 'td').eq(fieldIndex),
                 index = key.indexOf(' '),
                 name = key.substring(0, index),
                 el = key.substring(index + 1),
@@ -1296,11 +1295,11 @@
         });
       },
       fieldValue(item, field, i, j) {
-        var value = getItemField(item, field, this.options.escape),
+        var value = getItemField(item, field, this.opts.escape),
           column = this.fieldColumns[j];
 
         return calculateObjectValue(column,
-        this.header.formatters[j], [value, item, i], value);
+          this.header.formatters[j], [value, item, i], value);
       },
       trigger(name) {
         var args = Array.prototype.slice.call(arguments, 1);
@@ -1322,7 +1321,6 @@
     margin-bottom: 0 !important;
     border-bottom: 1px solid #dddddd;
     border-collapse: collapse !important;
-    border-radius: 1px;
   }
 
   .bootstrap-table .table:not(.table-condensed),
@@ -1347,9 +1345,6 @@
     position: relative;
     clear: both;
     border: 1px solid #dddddd;
-    border-radius: 4px;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
   }
 
   .fixed-table-container.table-no-bordered {
@@ -1388,9 +1383,6 @@
 
   .fixed-table-container thead th:first-child {
     border-left: none;
-    border-top-left-radius: 4px;
-    -webkit-border-top-left-radius: 4px;
-    -moz-border-radius-topleft: 4px;
   }
 
   .fixed-table-container thead th .th-inner,
@@ -1585,20 +1577,6 @@
     margin-left: -1px !important;
   }
 
-  .fixed-table-toolbar .btn-group > .btn-group > .btn {
-    border-radius: 0;
-  }
-
-  .fixed-table-toolbar .btn-group > .btn-group:first-child > .btn {
-    border-top-left-radius: 4px;
-    border-bottom-left-radius: 4px;
-  }
-
-  .fixed-table-toolbar .btn-group > .btn-group:last-child > .btn {
-    border-top-right-radius: 4px;
-    border-bottom-right-radius: 4px;
-  }
-
   .bootstrap-table .table > thead > tr > th {
     vertical-align: bottom;
     border-bottom: 1px solid #ddd;
@@ -1616,7 +1594,6 @@
 
   .bootstrap-table .fixed-table-footer .table {
     border-bottom: none;
-    border-radius: 0;
     padding: 0 !important;
   }
 
@@ -1639,11 +1616,6 @@
     height: 150px;
     overflow: hidden;
   }
-
-
-
-
-
 
 
 </style>
