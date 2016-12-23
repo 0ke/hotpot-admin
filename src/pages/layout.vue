@@ -33,5 +33,6 @@
 </script>
 
 <style lang="scss">
+  @import "../element-theme/index.css";
   @import "../scss/main";
 </style>

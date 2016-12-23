@@ -1,6 +1,4 @@
-import jquery from 'jquery'
-import tether from 'tether'
-import bootstrap from 'bootstrap/dist/js/bootstrap'
-
-// 调试使用
-import holderjs from 'holderjs'
+import 'jquery'
+import 'tether'
+import 'bootstrap/dist/js/bootstrap'
+import 'holderjs'

@@ -1,4 +1,5 @@
 import dashboard from './dashboard/dashboard'
+import basicForm from './forms/basic-form.vue'
 import bootstrapTable from './tables/bootstrap-table'
 
 export default [
@@ -9,6 +10,24 @@ export default [
       title: 'Dashboard',
       icon: 'fa fa-dashboard'
     }
+  },
+  {
+    path: '/forms',
+    component: basicForm,
+    meta: {
+      title: 'Forms',
+      icon: 'fa fa-form',
+      abstract: true
+    },
+    children: [
+      {
+        path: '/basic-form',
+        component: basicForm,
+        meta: {
+          title: 'Basic Form'
+        }
+      }
+    ]
   },
   {
     path: '/tables',
