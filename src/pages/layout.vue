@@ -1,21 +1,16 @@
 <template>
-  <div class="container-fluid">
+  <div>
     <hp-page-top></hp-page-top>
-
-    <div class="page-wrapper">
-      <hp-aside></hp-aside>
-      <div class="content-wrapper">
-        <div class="al-content">
+    <el-row>
+      <el-col span="3">
+        <hp-aside></hp-aside>
+      </el-col>
+      <el-col span="21">
+        <div class="content-wrapper">
           <router-view></router-view>
         </div>
-      </div>
-    </div>
-
-    <!--<footer class="footer">-->
-    <!--<div class="container">-->
-    <!--<span class="text-muted">Place sticky footer content here.</span>-->
-    <!--</div>-->
-    <!--</footer>-->
+      </el-col>
+    </el-row>
   </div>
 </template>
 
@@ -33,6 +28,8 @@
 </script>
 
 <style lang="scss">
+  @import "../../node_modules/bootstrap/scss/bootstrap-reboot";
+  @import "../../node_modules/font-awesome/css/font-awesome.min.css";
   @import "../element-theme/index.css";
   @import "../scss/main";
 </style>

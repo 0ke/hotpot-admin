@@ -1,6 +1,5 @@
 import dashboard from './dashboard/dashboard'
 import basicForm from './forms/basic-form.vue'
-import bootstrapTable from './tables/bootstrap-table'
 
 export default [
   {
@@ -31,7 +30,6 @@ export default [
   },
   {
     path: '/tables',
-    component: bootstrapTable,
     meta: {
       title: 'Tables',
       icon: 'fa fa-table',
@@ -40,7 +38,6 @@ export default [
     children: [
       {
         path: '/bootstrap-table',
-        component: bootstrapTable,
         meta: {
           title: 'Bootstrap Table'
         }
@@ -56,42 +53,42 @@ export default [
     },
     children: [
       {
-        path: 'multi-level',
+        path: 'second-level1',
         meta: {
           title: 'Second Level Item 1',
           abstract: true
         }
       },
       {
-        path: 'multi-level',
+        path: 'second-level2',
         meta: {
           title: 'Second Level Item 2',
           abstract: true
         }
       },
       {
-        path: 'multi-level',
+        path: 'second-level3',
         meta: {
           title: 'Second Level Item 3',
           abstract: true
         },
         children: [
           {
-            path: 'multi-level',
+            path: 'third-level1',
             meta: {
               title: 'Third Level Item 1',
               abstract: true
             }
           },
           {
-            path: 'multi-level',
+            path: 'third-level2',
             meta: {
               title: 'Third Level Item 2',
               abstract: true
             }
           },
           {
-            path: 'multi-level',
+            path: 'third-level3',
             meta: {
               title: 'Third Level Item 3',
               abstract: true

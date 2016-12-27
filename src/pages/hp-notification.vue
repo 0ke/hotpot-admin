@@ -1,21 +1,30 @@
 <template>
-  <div>
-    <div class="header clearfix">
-      <strong>Notifications</strong>
-      <a href>Mark All as Read</a>
-      <a href>Settings</a>
-    </div>
-    <div class="msg-list">
-      <a href class="clearfix" v-for="msg in notifications">
+  <el-dropdown trigger="click">
+    <a href="javascript:;" class="el-dropdown-link">
+      <el-badge :value="5">
+        <i class="fa fa-bell-o"></i>
+      </el-badge>
+    </a>
+    <el-dropdown-menu slot="dropdown">
+      <li>
+        <div class="header clearfix">
+          <strong>Messages</strong>
+          <a href>Mark All as Read</a>
+          <a href>Settings</a>
+        </div>
+      </li>
+      <el-dropdown-item v-for="msg in notifications">
         <div class="img-area"><img src="holder.js/55x55"></div>
         <div class="msg-area">
           <div v-html="getMessage(msg)"></div>
           <span>{{ msg.time }}</span>
         </div>
-      </a>
-    </div>
-    <a href>See all notifications</a>
-  </div>
+      </el-dropdown-item>
+      <li>
+        <a href>See all notifications</a>
+      </li>
+    </el-dropdown-menu>
+  </el-dropdown>
 </template>
 <script>
   export default {

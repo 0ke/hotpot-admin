@@ -1,84 +1,87 @@
 <template>
   <div>
-    <div class="card-deck-wrapper">
-      <div class="card-deck">
-        <div class="card card-outline-primary">
-          <div class="card-header">
-            <div class="row">
-              <div class="col-xs-3">
+    <el-row gutter="20">
+      <el-col span="6">
+        <el-card>
+          <div slot="header">
+            <el-row>
+              <el-col span="6">
                 <i class="fa fa-comments fa-5x"></i>
-              </div>
-              <div class="col-xs-9 text-xs-right">
+              </el-col>
+              <el-col span="18">
                 <div class="huge">26</div>
                 <div>New Comments!</div>
-              </div>
-            </div>
+              </el-col>
+            </el-row>
           </div>
-          <div class="card-footer">
+          <div>
             <span class="float-xs-left">View Details</span>
             <span class="float-xs-right"><i class="fa fa-arrow-circle-right"></i></span>
             <div class="clearfix"></div>
           </div>
-        </div>
-
-        <div class="card card-outline-success">
-          <div class="card-header">
-            <div class="row">
-              <div class="col-xs-3">
+        </el-card>
+      </el-col>
+      <el-col span="6">
+        <el-card>
+          <div slot="header">
+            <el-row>
+              <el-col span="6">
                 <i class="fa fa-tasks fa-5x"></i>
-              </div>
-              <div class="col-xs-9 text-xs-right">
+              </el-col>
+              <el-col span="18">
                 <div class="huge">12</div>
                 <div>New Tasks!</div>
-              </div>
-            </div>
+              </el-col>
+            </el-row>
           </div>
-          <div class="card-footer">
+          <div>
             <span class="float-xs-left">View Details</span>
             <span class="float-xs-right"><i class="fa fa-arrow-circle-right"></i></span>
             <div class="clearfix"></div>
           </div>
-        </div>
-
-        <div class="card card-outline-warning">
-          <div class="card-header">
-            <div class="row">
-              <div class="col-xs-3">
+        </el-card>
+      </el-col>
+      <el-col span="6">
+        <el-card>
+          <div slot="header">
+            <el-row>
+              <el-col span="6">
                 <i class="fa fa-shopping-cart fa-5x"></i>
-              </div>
-              <div class="col-xs-9 text-xs-right">
-                <div class="huge">124</div>
+              </el-col>
+              <el-col span="18">
+                <div class="huge">12</div>
                 <div>New Orders!</div>
-              </div>
-            </div>
+              </el-col>
+            </el-row>
           </div>
-          <div class="card-footer">
+          <div>
             <span class="float-xs-left">View Details</span>
             <span class="float-xs-right"><i class="fa fa-arrow-circle-right"></i></span>
             <div class="clearfix"></div>
           </div>
-        </div>
-
-        <div class="card card-outline-danger">
-          <div class="card-header">
-            <div class="row">
-              <div class="col-xs-3">
+        </el-card>
+      </el-col>
+      <el-col span="6">
+        <el-card>
+          <div slot="header">
+            <el-row>
+              <el-col span="6">
                 <i class="fa fa-support fa-5x"></i>
-              </div>
-              <div class="col-xs-9 text-xs-right">
-                <div class="huge">26</div>
+              </el-col>
+              <el-col span="18">
+                <div class="huge">12</div>
                 <div>New Tickets!</div>
-              </div>
-            </div>
+              </el-col>
+            </el-row>
           </div>
-          <div class="card-footer">
+          <div>
             <span class="float-xs-left">View Details</span>
             <span class="float-xs-right"><i class="fa fa-arrow-circle-right"></i></span>
             <div class="clearfix"></div>
           </div>
-        </div>
-      </div>
-    </div>
+        </el-card>
+      </el-col>
+    </el-row>
 
     <div class="row">
       <div class="col-sm-6">

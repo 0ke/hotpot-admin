@@ -1,12 +1,17 @@
 <template>
-  <aside class="sidebar">
-    <hp-aside-item :menus="menus"></hp-aside-item>
-  </aside>
+  <el-menu default-active="2" theme="dark" router="true">
+    <template v-for="m, i in menus">
+      <hp-aside-submenu v-if="m.submenus && m.submenus.length > 0" :title="m.title"
+                        :index="m.path" :icon="m.icon"
+                        :submenus="m.submenus"></hp-aside-submenu>
+      <el-menu-item v-else :index="m.path"><i :class="m.icon"></i>{{m.title}}</el-menu-item>
+    </template>
+  </el-menu>
 </template>
 <script>
-  import hpAsideItem from './hp-aside-item.vue'
+  import hpAsideSubmenu from './hp-aside-submenu.vue'
   export default {
-    components: {hpAsideItem},
+    components: {hpAsideSubmenu},
     data() {
       return {
         menus: []
@@ -29,13 +34,14 @@
 
           if (r.children) {
             // FIXME 处理父节点路径
-            o.subMenus = []
-            recMenu(r.children, o.subMenus, r)
+            o.submenus = []
+            recMenu(r.children, o.submenus, r)
           }
           ms.push(o)
         })
       }
       recMenu(routes, menus)
+      console.log(menus)
       this.menus = menus
     }
   }

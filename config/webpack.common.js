@@ -48,8 +48,6 @@ module.exports = function (options) {
      */
     entry: {
       vendor: helpers.root('src/vendor.js'),
-      "font-awesome": ['font-awesome-loader!' + helpers.root('config/font-awesome.config.js')],
-      bootstrap: ['bootstrap-loader'],
       index: helpers.root('src/index.js')
     },
 
