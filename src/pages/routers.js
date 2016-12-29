@@ -15,7 +15,7 @@ export default [
     component: basicForm,
     meta: {
       title: 'Forms',
-      icon: 'fa fa-form',
+      icon: 'fa fa-edit',
       abstract: true
     },
     children: [

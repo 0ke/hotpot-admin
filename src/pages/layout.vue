@@ -1,15 +1,26 @@
 <template>
   <div>
     <hp-page-top></hp-page-top>
-    <el-row>
-      <el-col span="3">
-        <hp-aside></hp-aside>
-      </el-col>
-      <el-col span="21">
-        <div class="content-wrapper">
+    <el-row class="page-wrapper">
+      <hp-aside class="sidebar"></hp-aside>
+      <div class="content-wrapper">
+        <el-row>
+          <el-col span="12">
+            <h1>Title</h1>
+          </el-col>
+          <el-col span="12">
+            <el-breadcrumb separator="/">
+              <el-breadcrumb-item :to="{ path: '/' }">homepage</el-breadcrumb-item>
+              <el-breadcrumb-item>promotion management</el-breadcrumb-item>
+              <el-breadcrumb-item>promotion list</el-breadcrumb-item>
+              <el-breadcrumb-item>promotion detail</el-breadcrumb-item>
+            </el-breadcrumb>
+          </el-col>
+        </el-row>
+        <el-card>
           <router-view></router-view>
-        </div>
-      </el-col>
+        </el-card>
+      </div>
     </el-row>
   </div>
 </template>

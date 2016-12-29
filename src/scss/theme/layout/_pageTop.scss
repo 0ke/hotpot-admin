@@ -11,20 +11,6 @@
   }
 }
 
-a.logo {
-  color: $sidebar-text;
-  display: block;
-  font-size: 24px;
-  font-family: $font-family;
-  white-space: nowrap;
-  float: left;
-  outline: none !important;
-  line-height: $top-height;
-  span {
-    color: $primary;
-  }
-}
-
 .user-profile {
   transition: all .15s ease-in-out;
   padding: 0;

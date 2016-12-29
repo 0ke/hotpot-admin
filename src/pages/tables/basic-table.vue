@@ -1,12 +1,12 @@
 <template>
-  <bootstrap-table :columns="columns" :data="dataSet" :options="options"></bootstrap-table>
+
+
+
 </template>
 <script>
-  import bootstrapTable from 'components/vue-bootstrap-table/BootstrapTable'
   //  import _ from 'components/vue-bootstrap-table/locales/vue-bootstrap-table-zh-CN'
 
   export default {
-    components: {bootstrapTable},
     data() {
       const columns = [
         {title: "Name"},

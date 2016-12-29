@@ -1,0 +1,23 @@
+.page-top {
+  background-color: $top-color;
+  padding: 0 15px;
+  position: fixed;
+  top:0;
+  width: 100%;
+  z-index: 500;
+
+  a {
+    color: $color-white;
+  }
+}
+
+.logo {
+  font-size: 24px;
+  color: $color-grey !important;
+  line-height: $top-height;
+  text-decoration: none !important;
+
+  span {
+    color: $color-primary;
+  }
+}

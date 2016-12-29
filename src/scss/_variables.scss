@@ -1,12 +1,18 @@
-$gray-dark:                 #373a3c !default;
-$gray:                      #55595c !default;
-$gray-light:                #818a91 !default;
-$gray-lighter:              #eceeef !default;
-$gray-lightest:             #f7f7f9 !default;
+$color-primary: #20a0ff;
+$color-success: #13ce66;
+$color-warning: #f7ba2a;
+$color-danger: #ff4949;
+$color-info: #50bfff;
+$color-blue: #2e90fe;
+$color-blue-light: #5da9ff;
+$color-blue-lighter: rgba($color-blue, 0.12);
+$color-white: #fff;
+$color-black: #000;
+$color-grey: #c0ccda;
 
-$brand-primary:             #0275d8 !default;
-$brand-success:             #5cb85c !default;
-$brand-info:                #5bc0de !default;
-$brand-warning:             #f0ad4e !default;
-$brand-danger:              #d9534f !default;
-$brand-inverse:             $gray-dark !default;
+// top
+$top-height: 55px;
+$top-color: #1f2d3d;
+
+// left
+$left-width: 220px;

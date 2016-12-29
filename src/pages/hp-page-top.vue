@@ -1,7 +1,7 @@
 <template>
   <el-row type="flex" align="top" class="page-top">
     <el-col span="20">
-      <a class="logo clearfix"><span>Hotpot</span>Admin</a>
+      <a class="logo" href="javascript:;"><span>Hotpot</span>Admin</a>
       <a href="javascript:void(0);" class="collapse-menu-link"><i class="fa fa-bars"></i></a>
     </el-col>
     <el-col span="4" style="text-align:right;">

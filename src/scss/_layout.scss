@@ -1,0 +1,67 @@
+.page-wrapper {
+  margin-top: $top-height;
+  @include calc('height', '100vh - ' $top-height);
+
+  .sidebar {
+    position: fixed;
+    z-index: 500;
+    min-height: 100%;
+    left: 0;
+    width: $left-width;
+    i {
+      margin-right: 5px;
+    }
+  }
+
+  .content-wrapper {
+    margin-left: $left-width;
+    min-height: 100%;
+    padding: 10px;
+  }
+}
+
+.img-area {
+  float: left;
+  width: 36px;
+  img {
+    width: 36px;
+    height: 36px;
+    &.photo-msg-item {
+      border-radius: 18px;
+    }
+  }
+  & > div {
+    width: 36px;
+    height: 36px;
+    border-radius: 4px;
+    font-size: 24px;
+    text-align: center;
+    &.comments {
+      color: $color-warning;
+    }
+    &.orders {
+      color: $color-warning;
+    }
+    i {
+      width: 36px;
+      line-height: 36px;
+    }
+  }
+}
+
+.msg-area {
+  float: right;
+  width: 230px;
+  div {
+    max-height: 34px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  span {
+    font-style: italic;
+    text-align: right;
+    display: block;
+    font-size: 11px;
+    line-height: 11px;
+  }
+}
