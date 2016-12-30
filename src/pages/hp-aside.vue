@@ -9,7 +9,9 @@
   </el-menu>
 </template>
 <script>
-  import hpAsideSubmenu from './hp-aside-submenu.vue'
+  import {menus} from './menus'
+  import hpAsideSubmenu from './hp-aside-submenu'
+
   export default {
     components: {hpAsideSubmenu},
     data() {
@@ -18,30 +20,52 @@
       }
     },
     beforeMount() {
-      // 根据 routes 输出菜单
-      var routes = this.$router.options.routes
-      var menus = [];
+      let _routes = {}
+      let unfoldRoutes = (rs, p) => {
+        rs.forEach((r) => {
+          let path
+          if (p) {
+            if (p.path.charAt(p.path.length - 1) === '/') {
+              path = p.path.substr(0, p.path.length - 1)
+            } else {
+              path = p.path
+            }
+            if (r.path.charAt(0) !== '/') {
+              path += '/' + r.path
+            } else {
+              path += r.path
+            }
+          } else {
+            path = r.path
+          }
 
-      var recMenu = function (rs, ms, p) {
-        rs.forEach(function (r) {
-          var o = {
-            title: r.meta.title,
-            icon: r.meta.icon,
-            path: r.path,
-            abstract: r.meta.abstract,
-            collapsed: false
+          if (r.name) {
+            _routes[r.name] = {
+              path: path
+            }
           }
 
           if (r.children) {
-            // FIXME 处理父节点路径
-            o.submenus = []
-            recMenu(r.children, o.submenus, r)
+            unfoldRoutes(r.children, r)
           }
-          ms.push(o)
         })
       }
-      recMenu(routes, menus)
-      console.log(menus)
+      unfoldRoutes(this.$router.options.routes)
+
+      let mapMenu = (menus) => {
+        menus.forEach(function (m) {
+          if (m.name) {
+            m.path = _routes[m.name].path
+          } else {
+            m.path = Math.random() + ''
+          }
+
+          if (m.submenus && m.submenus.length > 0) {
+            mapMenu(m.submenus)
+          }
+        })
+      }
+      mapMenu(menus)
       this.menus = menus
     }
   }

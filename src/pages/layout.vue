@@ -39,7 +39,7 @@
 </script>
 
 <style lang="scss">
-  @import "../../node_modules/bootstrap/scss/bootstrap-reboot";
+  @import "../../node_modules/bootstrap/scss/bootstrap";
   @import "../../node_modules/font-awesome/css/font-awesome.min.css";
   @import "../element-theme/index.css";
   @import "../scss/main";

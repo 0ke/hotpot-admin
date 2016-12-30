@@ -1,16 +1,6 @@
 <template>
   <div>
-    <h3>普通表格</h3>
-    <el-table :data="dataSet">
-      <el-table-column prop="name" label="Name"></el-table-column>
-      <el-table-column prop="position" label="Position"></el-table-column>
-      <el-table-column prop="office" label="Office"></el-table-column>
-      <el-table-column prop="extn" label="Extn."></el-table-column>
-      <el-table-column prop="startDate" label="Start date"></el-table-column>
-      <el-table-column prop="salary" label="Salary"></el-table-column>
-    </el-table>
-
-    <h3 class="mt-2">斑马纹表格</h3>
+    <h3>分页表格</h3>
     <el-table :data="dataSet" stripe>
       <el-table-column prop="name" label="Name"></el-table-column>
       <el-table-column prop="position" label="Position"></el-table-column>
@@ -19,20 +9,15 @@
       <el-table-column prop="startDate" label="Start date"></el-table-column>
       <el-table-column prop="salary" label="Salary"></el-table-column>
     </el-table>
-
-    <h3 class="mt-2">边框表格</h3>
-    <el-table :data="dataSet" stripe border>
-      <el-table-column prop="name" label="Name"></el-table-column>
-      <el-table-column prop="position" label="Position"></el-table-column>
-      <el-table-column prop="office" label="Office"></el-table-column>
-      <el-table-column prop="extn" label="Extn."></el-table-column>
-      <el-table-column prop="startDate" label="Start date"></el-table-column>
-      <el-table-column prop="salary" label="Salary"></el-table-column>
-    </el-table>
+    <el-pagination class="float-xs-right mt-1"
+      :page-sizes="[100, 200, 300, 400]"
+      :page-size="100"
+      layout="total, sizes, prev, pager, next, jumper"
+      :total="400">
+    </el-pagination>
   </div>
 </template>
 <script>
-
   export default {
     data() {
       const dataSet = [
