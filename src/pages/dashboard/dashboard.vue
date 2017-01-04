@@ -156,6 +156,10 @@
           animationDuration: 2000
         }
       }
+    },
+    created() {
+      this.$root.contentTitle = 'Dashboard'
+      this.$root.contentBreadcrumbs = []
     }
   }
 </script>

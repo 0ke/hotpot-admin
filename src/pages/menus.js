@@ -11,6 +11,14 @@ let menus = [
       {
         name: 'forms.basicForms',
         title: 'Basic Forms'
+      },
+      {
+        name: 'forms.validation',
+        title: 'Form Validation'
+      },
+      {
+        name: 'forms.advancedElements',
+        title: 'Advanced Elements'
       }
     ]
   },
@@ -25,6 +33,16 @@ let menus = [
       {
         name: 'tables.pageTables',
         title: 'Page Tables'
+      }
+    ]
+  },
+  {
+    title: 'Charts',
+    icon: 'fa fa-bar-chart',
+    submenus: [
+      {
+        name: 'charts.echarts',
+        title: 'ECharts'
       }
     ]
   },

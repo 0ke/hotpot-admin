@@ -34,5 +34,9 @@ new Vue({
   router,
   el: '#app',
   template: '<app/>',
-  components: {app}
+  components: {app},
+  data: {
+    contentTitle: 'DEFAULT',
+    contentBreadcrumbs: []
+  }
 })

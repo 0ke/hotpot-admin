@@ -1,22 +1,37 @@
+@include scrollbars(.3em, #d9d9d9, rgba(0, 0, 0, 0));
+
 .page-wrapper {
-  margin-top: $top-height;
   @include calc('height', '100vh - ' $top-height);
 
   .sidebar {
-    position: fixed;
-    z-index: 500;
-    min-height: 100%;
+    height: 100%;
     left: 0;
-    width: $left-width;
+    //width: $left-width;
     i {
       margin-right: 5px;
     }
   }
 
   .content-wrapper {
-    margin-left: $left-width;
-    min-height: 100%;
+    //margin-left: $left-width;
+    height: 100%;
     padding: 10px;
+
+    .content-header {
+      height: $content-header-height;
+    }
+
+    .content-view {
+      @include calc('height', '100% - ' $content-header-height);
+      overflow: auto;
+    }
+
+    .header-breadcrumb {
+      padding: 0;
+      margin: 0;
+      background: transparent;
+      border-radius: 0;
+    }
   }
 }
 

@@ -65,6 +65,18 @@
         }
       }
     },
+    created() {
+      this.$root.contentTitle = 'Basic Forms'
+      this.$root.contentBreadcrumbs = [
+        {
+          text: 'Index',
+          path: '/'
+        },
+        {
+          text: 'Basic Forms'
+        }
+      ]
+    },
     methods: {
       onSubmit() {
         console.log('submit!');

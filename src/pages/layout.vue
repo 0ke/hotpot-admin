@@ -2,25 +2,33 @@
   <div>
     <hp-page-top></hp-page-top>
     <el-row class="page-wrapper">
-      <hp-aside class="sidebar"></hp-aside>
-      <div class="content-wrapper">
-        <el-row>
-          <el-col span="12">
-            <h1>Title</h1>
-          </el-col>
-          <el-col span="12">
-            <el-breadcrumb separator="/">
-              <el-breadcrumb-item :to="{ path: '/' }">homepage</el-breadcrumb-item>
-              <el-breadcrumb-item>promotion management</el-breadcrumb-item>
-              <el-breadcrumb-item>promotion list</el-breadcrumb-item>
-              <el-breadcrumb-item>promotion detail</el-breadcrumb-item>
-            </el-breadcrumb>
-          </el-col>
-        </el-row>
-        <el-card>
-          <router-view></router-view>
-        </el-card>
-      </div>
+      <el-col span="3" class="h-100">
+        <hp-aside class="sidebar"></hp-aside>
+      </el-col>
+      <el-col span="21" class="h-100">
+        <div class="content-wrapper">
+          <div class="content-header clearfix">
+            <div class="float-xs-left">
+              <h3>{{$root.contentTitle}}</h3>
+            </div>
+            <div class="float-xs-right" v-if="$root.contentBreadcrumbs && $root.contentBreadcrumbs.length > 1">
+              <ol class="breadcrumb header-breadcrumb">
+                <li class="breadcrumb-item" v-for="(v, i) in $root.contentBreadcrumbs" :class="{active: !v.path}">
+                  <template v-if="v.path">
+                    <a :href="v.path">{{v.text}}</a>
+                  </template>
+                  <template v-else>
+                    {{v.text}}
+                  </template>
+                </li>
+              </ol>
+            </div>
+          </div>
+          <el-card class="content-view">
+            <router-view></router-view>
+          </el-card>
+        </div>
+      </el-col>
     </el-row>
   </div>
 </template>

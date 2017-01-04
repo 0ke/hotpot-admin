@@ -1,32 +1,32 @@
 <template>
   <div>
     <h3>普通表格</h3>
-    <el-table :data="dataSet">
+    <el-table :data="rows">
       <el-table-column prop="name" label="Name"></el-table-column>
       <el-table-column prop="position" label="Position"></el-table-column>
       <el-table-column prop="office" label="Office"></el-table-column>
       <el-table-column prop="extn" label="Extn."></el-table-column>
-      <el-table-column prop="startDate" label="Start date"></el-table-column>
+      <el-table-column prop="start_date" label="Start date"></el-table-column>
       <el-table-column prop="salary" label="Salary"></el-table-column>
     </el-table>
 
     <h3 class="mt-2">斑马纹表格</h3>
-    <el-table :data="dataSet" stripe>
+    <el-table :data="rows" stripe>
       <el-table-column prop="name" label="Name"></el-table-column>
       <el-table-column prop="position" label="Position"></el-table-column>
       <el-table-column prop="office" label="Office"></el-table-column>
       <el-table-column prop="extn" label="Extn."></el-table-column>
-      <el-table-column prop="startDate" label="Start date"></el-table-column>
+      <el-table-column prop="start_date" label="Start date"></el-table-column>
       <el-table-column prop="salary" label="Salary"></el-table-column>
     </el-table>
 
     <h3 class="mt-2">边框表格</h3>
-    <el-table :data="dataSet" stripe border>
+    <el-table :data="rows" stripe border>
       <el-table-column prop="name" label="Name"></el-table-column>
       <el-table-column prop="position" label="Position"></el-table-column>
       <el-table-column prop="office" label="Office"></el-table-column>
       <el-table-column prop="extn" label="Extn."></el-table-column>
-      <el-table-column prop="startDate" label="Start date"></el-table-column>
+      <el-table-column prop="start_date" label="Start date"></el-table-column>
       <el-table-column prop="salary" label="Salary"></el-table-column>
     </el-table>
   </div>
@@ -35,13 +35,13 @@
 
   export default {
     data() {
-      const dataSet = [
+      const rows = [
         {
           name: "Tiger Nixon",
           position: "System Architect",
           office: "Edinburgh",
           extn: "5421",
-          startDate: "2011/04/25",
+          start_date: "2011/04/25",
           salary: "$320,800"
         },
         {
@@ -49,7 +49,7 @@
           position: "Accountant",
           office: "Tokyo",
           extn: "8422",
-          startDate: "2011/07/25",
+          start_date: "2011/07/25",
           salary: "$170,750"
         },
         {
@@ -57,7 +57,7 @@
           position: "Junior Technical Author",
           office: "San Francisco",
           extn: "1562",
-          startDate: "2009/01/12",
+          start_date: "2009/01/12",
           salary: "$86,000"
         },
         {
@@ -65,7 +65,7 @@
           position: "Senior Javascript Developer",
           office: "Edinburgh",
           extn: "6224",
-          startDate: "2012/03/29",
+          start_date: "2012/03/29",
           salary: "$433,060"
         },
         {
@@ -73,7 +73,7 @@
           position: "Accountant",
           office: "Tokyo",
           extn: "5407",
-          startDate: "2008/11/28",
+          start_date: "2008/11/28",
           salary: "$162,700"
         },
         {
@@ -81,7 +81,7 @@
           position: "Integration Specialist",
           office: "New York",
           extn: "4804",
-          startDate: "2012/12/02",
+          start_date: "2012/12/02",
           salary: "$372,000"
         },
         {
@@ -89,7 +89,7 @@
           position: "Sales Assistant",
           office: "San Francisco",
           extn: "9608",
-          startDate: "2012/08/06",
+          start_date: "2012/08/06",
           salary: "$137,500"
         },
         {
@@ -97,7 +97,7 @@
           position: "Integration Specialist",
           office: "Tokyo",
           extn: "6200",
-          startDate: "2010/10/14",
+          start_date: "2010/10/14",
           salary: "$327,900"
         },
         {
@@ -105,11 +105,23 @@
           position: "Javascript Developer",
           office: "San Francisco",
           extn: "2360",
-          startDate: "2009/09/15",
+          start_date: "2009/09/15",
           salary: "$205,500"
         }
       ]
-      return {dataSet: dataSet}
+      return {rows: rows}
+    },
+    created() {
+      this.$root.contentTitle = 'Basic Tables'
+      this.$root.contentBreadcrumbs = [
+        {
+          text: 'Index',
+          path: '/'
+        },
+        {
+          text: 'Basic Tables'
+        }
+      ]
     }
   }
 </script>
