@@ -37,12 +37,24 @@ let menus = [
     ]
   },
   {
-    title: 'Charts',
+    title: 'ECharts',
     icon: 'fa fa-bar-chart',
     submenus: [
       {
-        name: 'charts.echarts',
-        title: 'ECharts'
+        name: 'echarts.bar',
+        title: 'Bar Charts'
+      },
+      {
+        name: 'echarts.pie',
+        title: 'Pie Charts'
+      },
+      {
+        name: 'echarts.radar',
+        title: 'Radar Charts'
+      },
+      {
+        name: 'echarts.chinaMap',
+        title: 'China Map Charts'
       }
     ]
   },

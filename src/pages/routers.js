@@ -6,7 +6,12 @@ import advancedElements from './forms/advanced-elements.vue'
 
 import basicTables from './tables/basic-table'
 import pageTables from './tables/page-table'
-import echartsExample from './charts/echarts-example.vue'
+
+// echarts
+import barExample from './charts/bar-example.vue'
+import pieExample from './charts/pie-example.vue'
+import radarExample from './charts/radar-example.vue'
+import chinaMapExample from './charts/china-map-example.vue'
 
 export default [
   {
@@ -40,8 +45,23 @@ export default [
     component: pageTables
   },
   {
-    name: 'charts.echarts',
-    path: '/charts/echarts',
-    component: echartsExample
+    name: 'echarts.bar',
+    path: '/echarts/bar',
+    component: barExample
+  },
+  {
+    name: 'echarts.pie',
+    path: '/echarts/pie',
+    component: pieExample
+  },
+  {
+    name: 'echarts.radar',
+    path: '/echarts/radar',
+    component: radarExample
+  },
+  {
+    name: 'echarts.chinaMap',
+    path: '/echarts/china-map',
+    component: chinaMapExample
   }
 ]

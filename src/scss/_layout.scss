@@ -6,14 +6,12 @@
   .sidebar {
     height: 100%;
     left: 0;
-    //width: $left-width;
     i {
       margin-right: 5px;
     }
   }
 
   .content-wrapper {
-    //margin-left: $left-width;
     height: 100%;
     padding: 10px;
 
@@ -23,6 +21,8 @@
 
     .content-view {
       @include calc('height', '100% - ' $content-header-height);
+      border: 1px solid $color-grey;
+      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .12), 0 0 6px 0 rgba(0, 0, 0, .04);
       overflow: auto;
     }
 

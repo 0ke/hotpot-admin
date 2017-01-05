@@ -1,5 +1,5 @@
 <template>
-  <chart :options="option" style="height: 500px;"></chart>
+  <chart :options="option" style="height: 99%"></chart>
 </template>
 <script>
   export default {
@@ -56,6 +56,18 @@
         ]
       }
       return {option: option}
+    },
+    created() {
+      this.$root.contentTitle = 'Pie Charts Example'
+      this.$root.contentBreadcrumbs = [
+        {
+          text: 'Index',
+          path: '/'
+        },
+        {
+          text: 'Pie Charts Example'
+        }
+      ]
     }
   }
 </script>

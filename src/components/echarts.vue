@@ -2,7 +2,10 @@
   <div></div>
 </template>
 <script>
-  import echarts from 'echarts'
+  import echarts from 'echarts/dist/echarts'
+  import chinaJson from '../assets/map/china.json'
+  echarts.registerMap('china', chinaJson)
+
   // enumerated ECharts events for now
   const ACTION_EVENTS = [
     'legendselectchanged',

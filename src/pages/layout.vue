@@ -24,9 +24,9 @@
               </ol>
             </div>
           </div>
-          <el-card class="content-view">
+          <div class="content-view">
             <router-view></router-view>
-          </el-card>
+          </div>
         </div>
       </el-col>
     </el-row>

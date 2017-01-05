@@ -70,6 +70,7 @@ module.exports = function (options) {
       alias: {
         vue: 'vue/dist/vue.js',
         components: helpers.root('src/components'),
+        assets: helpers.root('src/assets'),
         pages: helpers.root('src/pages')
       }
     },
