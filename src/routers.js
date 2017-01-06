@@ -1,17 +1,19 @@
-import dashboard from './dashboard/dashboard'
+import dashboard from './pages/dashboard/dashboard'
 
-import basicForm from './forms/basic-form'
-import validationForm from './forms/form-validation.vue'
-import advancedElements from './forms/advanced-elements.vue'
+import basicForm from './pages/forms/basic-form'
+import validationForm from './pages/forms/form-validation.vue'
+import advancedElements from './pages/forms/advanced-elements.vue'
+import wysiwygEditor from './pages/forms/wysiwyg-editor.vue'
 
-import basicTables from './tables/basic-table'
-import pageTables from './tables/page-table'
+import basicTables from './pages/tables/basic-table'
+import pageTables from './pages/tables/page-table'
 
 // echarts
-import barExample from './charts/bar-example.vue'
-import pieExample from './charts/pie-example.vue'
-import radarExample from './charts/radar-example.vue'
-import chinaMapExample from './charts/china-map-example.vue'
+import barExample from './pages/charts/bar-example.vue'
+import lineExample from './pages/charts/line-example.vue'
+import pieExample from './pages/charts/pie-example.vue'
+import radarExample from './pages/charts/radar-example.vue'
+import chinaMapExample from './pages/charts/china-map-example.vue'
 
 export default [
   {
@@ -35,6 +37,11 @@ export default [
     component: advancedElements
   },
   {
+    name: 'forms.wysiwygEditor',
+    path: '/forms/wysiwyg-editor',
+    component: wysiwygEditor
+  },
+  {
     name: 'tables.basicTables',
     path: '/tables/basic-table',
     component: basicTables,
@@ -48,6 +55,11 @@ export default [
     name: 'echarts.bar',
     path: '/echarts/bar',
     component: barExample
+  },
+  {
+    name: 'echarts.line',
+    path: '/echarts/line',
+    component: lineExample
   },
   {
     name: 'echarts.pie',

@@ -9,7 +9,7 @@
   </el-menu>
 </template>
 <script>
-  import {menus} from './menus'
+  import {menus} from '../menus'
   import hpAsideSubmenu from './hp-aside-submenu'
 
   export default {

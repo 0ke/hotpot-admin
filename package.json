@@ -1,7 +1,7 @@
 {
   "name": "hotpot-admin",
   "version": "1.0.0",
-  "description": "A Vue.js project",
+  "description": "Hotport Admin for Vue.js 2.0",
   "author": "kevin <kevinz@weghst.com>",
   "license": "APACHE",
   "scripts": {
@@ -10,8 +10,7 @@
     "build:dev": "npm run webpack -- --config config/webpack.dev.js",
     "server:dev": "webpack-dev-server --config config/webpack.dev.js --progress --profile --watch --content-base src/",
     "server:dev:hmr": "npm run server:dev -- --inline --hot",
-    "dev": "node build/dev-server.js",
-    "build": "node build/build.js"
+    "build": "npm run webpack -- --config config/webpack.prod.js"
   },
   "dependencies": {
     "axios": "^0.15.3",

@@ -8,17 +8,24 @@
     <el-dropdown-menu slot="dropdown">
       <li>
         <div class="header clearfix">
-          <strong>Messages</strong>
+          <strong>Notifications</strong>
           <a href>Mark All as Read</a>
           <a href>Settings</a>
         </div>
       </li>
       <el-dropdown-item v-for="msg in notifications">
-        <div class="img-area"><img src="holder.js/55x55"></div>
-        <div class="msg-area">
-          <div v-html="getMessage(msg)"></div>
-          <span>{{ msg.time }}</span>
+        <div class="media">
+          <a class="media-left" href="#">
+            <img src="holder.js/55x55">
+          </a>
+          <div class="media-body">
+            Cras sit amet nibh libero, in gravida nulla.
+          </div>
         </div>
+        <!--<div class="msg-area">-->
+        <!--<div v-html="getMessage(msg)"></div>-->
+        <!--<span>{{ msg.time }}</span>-->
+        <!--</div>-->
       </el-dropdown-item>
       <li>
         <a href>See all notifications</a>

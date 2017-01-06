@@ -14,7 +14,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
 const CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 const METADATA = {
   title: 'hotpot-admin - Vue.js 2 后台管理模板',
@@ -41,9 +40,6 @@ module.exports = function (options) {
     //cache: false,
 
     /*
-     * The entry point for the bundle
-     * Our Angular.js app
-     *
      * See: http://webpack.github.io/docs/configuration.html#entry
      */
     entry: {
@@ -93,6 +89,12 @@ module.exports = function (options) {
               })
             }
           }
+        },
+        {
+          test: /\.js$/,
+          loader: 'babel-loader',
+          include: [helpers.root('src')],
+          exclude: /node_modules/
         },
         /*
          * Json loader support for *.json files.
@@ -167,7 +169,10 @@ module.exports = function (options) {
        * See: https://github.com/webpack/docs/wiki/optimization#multi-page-app
        */
       new CommonsChunkPlugin({
-        name: ['vendor'].reverse()
+        name: ['vendor'].reverse(),
+        minChunks: 2,
+        children: true,
+        async: true
       }),
 
       /*
@@ -178,10 +183,6 @@ module.exports = function (options) {
        *
        * See: https://www.npmjs.com/package/copy-webpack-plugin
        */
-      new CopyWebpackPlugin([{
-        from: 'src/assets',
-        to: 'assets'
-      }]),
       new CopyWebpackPlugin([{
         from: 'static',
         to: 'static'
@@ -200,7 +201,10 @@ module.exports = function (options) {
         title: METADATA.title,
         chunksSortMode: 'dependency',
         metadata: METADATA,
-        inject: 'head'
+        inject: 'head',
+        minify: {
+          collapseWhitespace: options.htmlMinify
+        }
       }),
 
       /*
@@ -249,10 +253,7 @@ module.exports = function (options) {
 
       new webpack.ProvidePlugin({
         $: 'jquery',
-        jQuery: 'jquery',
-        "window.jQuery": 'jquery',
-        Tether: "tether",
-        "window.Tether": "tether",
+        jQuery: 'jquery'
       })
     ],
 

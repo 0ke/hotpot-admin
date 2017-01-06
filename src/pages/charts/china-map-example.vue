@@ -2,13 +2,10 @@
   <div style="height:99%;"></div>
 </template>
 <script>
-  import echarts from 'echarts'
-  import chinaJson from 'assets/map/china.json'
-  echarts.registerMap('china', chinaJson)
-
   let randomData = () => {
     return Math.round(Math.random() * 1000)
   }
+
   let options = {
     title: {
       text: 'iphone销量',
@@ -169,8 +166,16 @@
       ]
     },
     mounted() {
-      let chart = echarts.init(this.$el, this.theme, this.initOptions)
-      chart.setOption(options)
+      let that = this
+      require(['echarts'], function (echarts) {
+        require(['assets/map/china.json'], function (chinaJson) {
+          echarts.registerMap('china', chinaJson)
+
+          let chart = echarts.init(that.$el, that.theme, that.initOptions)
+          chart.setOption(options)
+          that.chart = chart
+        })
+      })
     }
   }
 </script>

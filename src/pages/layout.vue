@@ -24,7 +24,7 @@
               </ol>
             </div>
           </div>
-          <div class="content-view">
+          <div class="content-view p-1">
             <router-view></router-view>
           </div>
         </div>

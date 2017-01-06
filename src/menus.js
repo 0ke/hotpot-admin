@@ -1,4 +1,4 @@
-let menus = [
+const menus = [
   {
     name: 'dashboard',
     title: 'Dashboard',
@@ -19,6 +19,10 @@ let menus = [
       {
         name: 'forms.advancedElements',
         title: 'Advanced Elements'
+      },
+      {
+        name: 'forms.wysiwygEditor',
+        title: 'WYSIWYG Editor'
       }
     ]
   },
@@ -43,6 +47,10 @@ let menus = [
       {
         name: 'echarts.bar',
         title: 'Bar Charts'
+      },
+      {
+        name: 'echarts.line',
+        title: 'Line Charts'
       },
       {
         name: 'echarts.pie',
