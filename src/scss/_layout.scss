@@ -1,9 +1,12 @@
-@include scrollbars(.3em, #d9d9d9, rgba(0, 0, 0, 0));
+@include scrollbars(.4em, #d9d9d9, rgba(0, 0, 0, 0));
 
 .page-wrapper {
   @include calc('height', '100vh - ' $top-height);
+  margin-top: $top-height;
 
   .sidebar {
+    width: $left-width;
+    position: fixed;
     height: 100%;
     left: 0;
     i {
@@ -12,18 +15,20 @@
   }
 
   .content-wrapper {
-    height: 100%;
+    margin-left: $left-width;
     padding: 10px;
+    min-height: 100%;
+    overflow: hidden;
 
     .content-header {
       height: $content-header-height;
     }
 
     .content-view {
-      @include calc('height', '100% - ' $content-header-height);
+      @include calc('min-height', '100vh - ' $content-header-height ' - 20px - ' $top-height);
+      height: auto;
       border: 1px solid $color-grey;
       box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .12), 0 0 6px 0 rgba(0, 0, 0, .04);
-      overflow: scroll;
     }
 
     .header-breadcrumb {

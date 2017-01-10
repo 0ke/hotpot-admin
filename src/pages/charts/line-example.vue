@@ -1,5 +1,5 @@
 <template>
-  <div style="height: 99%;"></div>
+  <div></div>
 </template>
 <script>
   function randomData() {
@@ -75,14 +75,16 @@
     mounted() {
       let that = this
       require(['echarts'], function (echarts) {
-        let chart = echarts.init(that.$el, that.theme, that.initOptions)
+        let chart = echarts.init(that.$el, null, {
+          height: 600
+        })
         chart.setOption(options)
         that.chart = chart
       })
 
 
-      setInterval(() => {
-        for (var i = 0; i < 5; i++) {
+      setInterval(function () {
+        for (let i = 0; i < 5; i++) {
           data.shift();
           data.push(randomData());
         }

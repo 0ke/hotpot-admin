@@ -1,5 +1,5 @@
 <template>
-  <el-row class="page-top">
+  <el-row type="flex" align="top" class="page-top pos-f-t">
     <el-col span="20">
       <a class="logo" href="javascript:;"><span>Hotpot</span>Admin</a>
       <a href="javascript:void(0);" class="collapse-menu-link"><i class="fa fa-bars"></i></a>

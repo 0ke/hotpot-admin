@@ -1,5 +1,5 @@
 <template>
-  <div style="height: 99%;"></div>
+  <div style="height:100%;"></div>
 </template>
 <script>
   let options = {
@@ -9,6 +9,7 @@
         type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
       }
     },
+    height: 500,
     legend: {
       data: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎', '百度', '谷歌', '必应', '其他']
     },
@@ -115,7 +116,9 @@
     mounted() {
       let that = this
       require(['echarts'], function (echarts) {
-        let chart = echarts.init(that.$el, that.theme, that.initOptions)
+        let chart = echarts.init(that.$el, null, {
+          height: 600
+        })
         chart.setOption(options)
         that.chart = chart
       })

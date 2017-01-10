@@ -1,5 +1,5 @@
 <template>
-  <div style="height:99%;"></div>
+  <div></div>
 </template>
 <script>
   let randomData = () => {
@@ -171,7 +171,9 @@
         require(['assets/map/china.json'], function (chinaJson) {
           echarts.registerMap('china', chinaJson)
 
-          let chart = echarts.init(that.$el, that.theme, that.initOptions)
+          let chart = echarts.init(that.$el, null, {
+            height: 600
+          })
           chart.setOption(options)
           that.chart = chart
         })
