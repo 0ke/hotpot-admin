@@ -2,9 +2,7 @@
   <div></div>
 </template>
 <script>
-  import moment from 'moment'
   import fullCalendar from 'fullcalendar'
-  import fullCalendar_zh_cn from 'fullcalendar/dist/locale/zh-cn'
 
   export default {
     data() {

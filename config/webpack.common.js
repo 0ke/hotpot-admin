@@ -43,7 +43,6 @@ module.exports = function (options) {
      * See: http://webpack.github.io/docs/configuration.html#entry
      */
     entry: {
-      vendor: helpers.root('src/vendor.js'),
       index: helpers.root('src/index.js')
     },
 
@@ -64,13 +63,16 @@ module.exports = function (options) {
       // An array of directory names to be resolved to the current directory
       modules: [helpers.root('src'), 'node_modules'],
       alias: {
-        vue: 'vue/dist/vue.js',
         components: helpers.root('src/components'),
         assets: helpers.root('src/assets'),
         pages: helpers.root('src/pages')
       }
     },
-
+    externals: {
+      'vue': 'Vue',
+      'jquery': 'jQuery',
+      'moment': 'moment'
+    },
     /*
      * Options affecting the normal modules.
      *
@@ -88,7 +90,8 @@ module.exports = function (options) {
                 fallbackLoader: 'vue-style-loader'
               })
             }
-          }
+          },
+          exclude: /node_modules/
         },
         {
           test: /\.js$/,
@@ -251,6 +254,7 @@ module.exports = function (options) {
        */
       new LoaderOptionsPlugin({}),
 
+      new webpack.IgnorePlugin(/vue.runtime.common.js$/),
       new webpack.ProvidePlugin({
         $: 'jquery',
         jQuery: 'jquery'

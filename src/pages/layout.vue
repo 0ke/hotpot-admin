@@ -1,8 +1,9 @@
 <template>
   <div>
     <hp-page-top></hp-page-top>
+    <hp-aside></hp-aside>
+
     <el-row class="page-wrapper">
-      <hp-aside class="sidebar"></hp-aside>
       <div class="content-wrapper">
         <div class="content-header clearfix">
           <div class="float-xs-left">
@@ -44,7 +45,6 @@
 
 <style lang="scss">
   @import "../../node_modules/bootstrap/scss/bootstrap";
-  @import "../../node_modules/font-awesome/css/font-awesome.min.css";
   @import "../element-theme/index.css";
   @import "../scss/main";
 </style>

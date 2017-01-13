@@ -1,21 +1,16 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Axios from 'axios'
+import ElementUI from 'element-ui'
 import VueAxios from 'vue-axios'
 
-import ElementUI from 'element-ui'
-
-Vue.use(VueRouter)
 Vue.use(ElementUI)
-Vue.use(VueAxios, Axios)
+Vue.use(VueAxios, axios)
 
 import routes from './routers'
-import app from './pages/layout'
+import layout from './pages/layout'
 
 const router = new VueRouter({
+  routes,
   mode: 'history',
-  base: '/c',
-  routes: routes
+  base: '/c'
 })
 
 // 取消 Vue 所有的日志与警告
@@ -24,13 +19,12 @@ Vue.config.errorHandler = (err, vm) => {
   console.error(err)
 }
 
-new Vue({
+const app = new Vue({
   router,
-  el: '#app',
-  template: '<app/>',
-  components: {app},
+  template: '<layout></layout>',
+  components: {layout},
   data: {
     contentTitle: 'DEFAULT',
     contentBreadcrumbs: []
   }
-})
+}).$mount('#app')

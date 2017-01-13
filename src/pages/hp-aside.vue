@@ -1,5 +1,5 @@
 <template>
-  <el-menu default-active="2" theme="dark" router="true">
+  <el-menu theme="dark" router="true" mode="horizontal">
     <template v-for="m, i in menus">
       <hp-aside-submenu v-if="m.submenus && m.submenus.length > 0" :title="m.title"
                         :index="m.path" :icon="m.icon"
