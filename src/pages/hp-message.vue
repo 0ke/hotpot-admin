@@ -7,21 +7,25 @@
     </a>
     <el-dropdown-menu slot="dropdown">
       <li>
-        <div class="header clearfix">
+        <div class="d-flex justify-content-between">
           <strong>Messages</strong>
           <a href>Mark All as Read</a>
           <a href>Settings</a>
         </div>
       </li>
       <el-dropdown-item v-for="msg in messages">
-        <div class="img-area"><img src="holder.js/55x55"></div>
-        <div class="msg-area">
-          <div>{{ msg.text }}</div>
-          <span>{{ msg.time }}</span>
+        <div class="d-flex">
+          <div><img src="holder.js/55x55"></div>
+          <div>
+            <p class="text-justify">{{ msg.text }}</p>
+            <span>{{ msg.time }}</span>
+          </div>
         </div>
       </el-dropdown-item>
       <li>
-        <a href>See all messages</a>
+        <div class="d-flex justify-content-center">
+          <a href>See all messages...</a>
+        </div>
       </li>
     </el-dropdown-menu>
   </el-dropdown>

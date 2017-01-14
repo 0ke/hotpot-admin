@@ -1,15 +1,13 @@
 <template>
   <div>
     <hp-page-top></hp-page-top>
-    <hp-aside></hp-aside>
-
-    <el-row class="page-wrapper">
+    <div class="page-wrapper p-1">
       <div class="content-wrapper">
-        <div class="content-header clearfix">
-          <div class="float-xs-left">
-            <h3>{{$root.contentTitle}}</h3>
+        <div class="d-flex justify-content-between">
+          <div>
+            <h5>{{$root.contentTitle}}</h5>
           </div>
-          <div class="float-xs-right" v-if="$root.contentBreadcrumbs && $root.contentBreadcrumbs.length > 1">
+          <div class="ml-5" v-if="$root.contentBreadcrumbs && $root.contentBreadcrumbs.length > 1">
             <ol class="breadcrumb header-breadcrumb">
               <li class="breadcrumb-item" v-for="(v, i) in $root.contentBreadcrumbs" :class="{active: !v.path}">
                 <template v-if="v.path">
@@ -22,22 +20,22 @@
             </ol>
           </div>
         </div>
-        <div class="content-view p-1">
+
+        <div>
           <router-view></router-view>
         </div>
       </div>
-    </el-row>
+    </div>
   </div>
 </template>
 
 <script>
   import hpPageTop from './hp-page-top'
-  import hpAside from './hp-aside'
 
   export default {
     name: 'app',
     components: {
-      hpPageTop, hpAside
+      hpPageTop
     }
   }
 

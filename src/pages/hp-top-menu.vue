@@ -1,19 +1,19 @@
 <template>
-  <el-menu theme="dark" router="true" mode="horizontal">
+  <el-menu theme="dark" router="true" mode="horizontal" class="pl-1">
     <template v-for="m, i in menus">
-      <hp-aside-submenu v-if="m.submenus && m.submenus.length > 0" :title="m.title"
-                        :index="m.path" :icon="m.icon"
-                        :submenus="m.submenus"></hp-aside-submenu>
-      <el-menu-item v-else :index="m.path"><i :class="m.icon"></i>{{m.title}}</el-menu-item>
+      <hp-top-submenu v-if="m.submenus && m.submenus.length > 0" :title="m.title"
+                      :index="m.path" :icon="m.icon"
+                      :submenus="m.submenus" class="top-menu-item"></hp-top-submenu>
+      <el-menu-item v-else :index="m.path" class="top-menu-item"><i :class="m.icon" class="mr-1"></i>{{m.title}}</el-menu-item>
     </template>
   </el-menu>
 </template>
 <script>
   import {menus} from '../menus'
-  import hpAsideSubmenu from './hp-aside-submenu'
+  import hpTopSubmenu from './hp-top-submenu'
 
   export default {
-    components: {hpAsideSubmenu},
+    components: {hpTopSubmenu},
     data() {
       return {
         menus: []

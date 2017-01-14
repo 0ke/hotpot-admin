@@ -252,13 +252,7 @@ module.exports = function (options) {
        *
        * See: https://gist.github.com/sokra/27b24881210b56bbaff7
        */
-      new LoaderOptionsPlugin({}),
-
-      new webpack.IgnorePlugin(/vue.runtime.common.js$/),
-      new webpack.ProvidePlugin({
-        $: 'jquery',
-        jQuery: 'jquery'
-      })
+      new LoaderOptionsPlugin({})
     ],
 
     /*

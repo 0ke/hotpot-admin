@@ -1,7 +1,5 @@
 .page-top {
   background-color: $top-color;
-  padding: 0 15px;
-  width: 100%;
 
   a {
     color: $color-white;
@@ -11,10 +9,24 @@
 .logo {
   font-size: 24px;
   color: $color-grey !important;
-  line-height: $top-height;
+  line-height: $top-header-height;
   text-decoration: none !important;
 
   span {
     color: $color-primary;
+  }
+}
+
+.top-menu-item {
+  height: $top-menu-height !important;
+  line-height: $top-menu-height !important;
+
+  div {
+    height: $top-menu-height !important;
+    line-height: $top-menu-height !important;
+  }
+
+  ul.el-menu {
+    top: $top-menu-height !important;
   }
 }

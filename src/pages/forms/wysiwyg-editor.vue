@@ -1,6 +1,6 @@
 <template>
   <el-row>
-    <el-col span="22" offset="1">
+    <el-col span="24">
       <div>
         <div ref="editor1">
           <p>Hello World!</p>

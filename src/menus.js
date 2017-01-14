@@ -65,32 +65,6 @@ const menus = [
         title: 'China Map Charts'
       }
     ]
-  },
-  {
-    title: 'Multi-Level Menu',
-    icon: 'fa fa-sitemap',
-    submenus: [
-      {
-        title: 'Second Level Item 1'
-      },
-      {
-        title: 'Second Level Item 2'
-      },
-      {
-        title: 'Second Level Item 3',
-        submenus: [
-          {
-            title: 'Third Level Item 1'
-          },
-          {
-            title: 'Third Level Item 2'
-          },
-          {
-            title: 'Third Level Item 3'
-          }
-        ]
-      }
-    ]
   }
 ]
 

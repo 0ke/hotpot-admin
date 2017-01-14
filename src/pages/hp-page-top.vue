@@ -1,31 +1,42 @@
 <template>
-  <el-row type="flex" align="top" class="page-top pos-f-t">
-    <el-col span="20">
-      <a class="logo" href="javascript:;"><span>Hotpot</span>Admin</a>
-      <a href="javascript:void(0);" class="collapse-menu-link"><i class="fa fa-bars"></i></a>
-    </el-col>
-    <el-col span="4" style="text-align:right;">
-      <hp-notification></hp-notification>
-      <hp-message></hp-message>
-      <el-dropdown trigger="click">
-        <a href="javascript:;" class="el-dropdown-link"><img src="holder.js/55x55"/></a>
-        <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item><a><i class="fa fa-user"></i> Profile</a></el-dropdown-item>
-          <el-dropdown-item><a><i class="fa fa-cog"></i> Settings</a></el-dropdown-item>
-          <el-dropdown-item><a><i class="fa fa-power-off"></i> Sign Out</a></el-dropdown-item>
-        </el-dropdown-menu>
-      </el-dropdown>
-    </el-col>
+  <div class="fixed-top page-top">
+    <div class="row">
+      <div class="col-6 pl-5">
+        <a class="logo" href="javascript:;"><span>Hotpot</span>Admin</a>
+      </div>
+      <div class="col-6">
+        <div class="d-flex flex-row-reverse mr-5">
+          <div class="ml-4 align-self-center">
+            <el-dropdown>
+              <a href="javascript:;" class="el-dropdown-link"><img src="holder.js/50x50"/></a>
+              <el-dropdown-menu slot="dropdown">
+                <el-dropdown-item><a><i class="fa fa-user"></i> Profile</a></el-dropdown-item>
+                <el-dropdown-item><a><i class="fa fa-cog"></i> Settings</a></el-dropdown-item>
+                <el-dropdown-item><a><i class="fa fa-power-off"></i> Sign Out</a></el-dropdown-item>
+              </el-dropdown-menu>
+            </el-dropdown>
+          </div>
+          <div class="ml-4 align-self-center">
+            <hp-message></hp-message>
+          </div>
+          <div class="align-self-center">
+            <hp-notification></hp-notification>
+          </div>
+        </div>
+      </div>
+    </div>
 
-  </el-row>
+    <hp-top-menu></hp-top-menu>
+  </div>
 </template>
 <script>
-  import hpMsgCenter from './hp-msg-center'
   import hpNotification from './hp-notification'
   import hpMessage from './hp-message'
+  import hpTopMenu from './hp-top-menu'
+
   export default{
     components: {
-      hpMsgCenter, hpNotification, hpMessage
+      hpNotification, hpMessage, hpTopMenu
     }
   }
 </script>
