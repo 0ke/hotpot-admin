@@ -17,6 +17,62 @@
   }
 }
 
+.msg {
+  sup {
+    border: none !important;
+  }
+}
+
+.msg-panel {
+  font-size: 12px;
+
+  .msg-all {
+    display: block;
+  }
+}
+
+.msg-list {
+  max-height: 300px;
+  overflow: scroll;
+  overflow-x: hidden;
+
+  a {
+    padding: 10px 12px;
+    display: block;
+    text-decoration: none;
+    color: $color-black;
+    font-size: 12px;
+
+    &:hover {
+      background: $color-blue-lighter;
+    }
+  }
+
+  .img-area {
+    float: left;
+    width: 40px;
+  }
+
+  .msg-area {
+    float: right;
+    margin-left: 10px;
+    width: 230px;
+
+    div {
+      max-height: 34px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    span {
+      font-style: italic;
+      text-align: right;
+      display: block;
+      font-size: 11px;
+    }
+  }
+}
+
 .top-menu-item {
   height: $top-menu-height !important;
   line-height: $top-menu-height !important;

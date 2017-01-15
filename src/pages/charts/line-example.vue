@@ -1,5 +1,7 @@
 <template>
-  <div></div>
+  <el-card>
+    <div ref="chart"></div>
+  </el-card>
 </template>
 <script>
   function randomData() {
@@ -58,7 +60,7 @@
 
   export default {
     data() {
-      return {chart: null}
+      return {chart: null, intervalId: null}
     },
     created() {
       this.$root.contentTitle = 'Bar Charts Example'
@@ -74,22 +76,24 @@
     },
     mounted() {
       let that = this
-      require(['echarts'], function (echarts) {
-        let chart = echarts.init(that.$el, null, {
+      $script(configs.ECHARTS_SCRIPT_URL, function () {
+        let chart = echarts.init(that.$refs.chart, null, {
           height: 600
         })
         chart.setOption(options)
         that.chart = chart
       })
 
-
-      setInterval(function () {
+      this.intervalId = setInterval(function () {
         for (let i = 0; i < 5; i++) {
           data.shift();
           data.push(randomData());
         }
-        this.chart.setOption({series: [{data: data}]});
-      }, 1000);
+        that.chart.setOption({series: [{data: data}]});
+      }, 1000)
+    },
+    beforeDestroy() {
+      clearInterval(this.intervalId)
     }
   }
 </script>

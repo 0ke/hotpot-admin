@@ -1,34 +1,40 @@
 <template>
   <div>
-    <h3>普通表格</h3>
-    <el-table :data="rows">
-      <el-table-column prop="name" label="Name"></el-table-column>
-      <el-table-column prop="position" label="Position"></el-table-column>
-      <el-table-column prop="office" label="Office"></el-table-column>
-      <el-table-column prop="extn" label="Extn."></el-table-column>
-      <el-table-column prop="start_date" label="Start date"></el-table-column>
-      <el-table-column prop="salary" label="Salary"></el-table-column>
-    </el-table>
+    <el-card>
+      <div class="mb-3">普通表格</div>
+      <el-table :data="rows">
+        <el-table-column prop="name" label="Name"></el-table-column>
+        <el-table-column prop="position" label="Position"></el-table-column>
+        <el-table-column prop="office" label="Office"></el-table-column>
+        <el-table-column prop="extn" label="Extn."></el-table-column>
+        <el-table-column prop="start_date" label="Start date"></el-table-column>
+        <el-table-column prop="salary" label="Salary"></el-table-column>
+      </el-table>
+    </el-card>
 
-    <h3 class="mt-2">斑马纹表格</h3>
-    <el-table :data="rows" stripe>
-      <el-table-column prop="name" label="Name"></el-table-column>
-      <el-table-column prop="position" label="Position"></el-table-column>
-      <el-table-column prop="office" label="Office"></el-table-column>
-      <el-table-column prop="extn" label="Extn."></el-table-column>
-      <el-table-column prop="start_date" label="Start date"></el-table-column>
-      <el-table-column prop="salary" label="Salary"></el-table-column>
-    </el-table>
+    <el-card class="mt-3">
+      <div class="mb-3">斑马纹表格</div>
+      <el-table :data="rows" stripe>
+        <el-table-column prop="name" label="Name"></el-table-column>
+        <el-table-column prop="position" label="Position"></el-table-column>
+        <el-table-column prop="office" label="Office"></el-table-column>
+        <el-table-column prop="extn" label="Extn."></el-table-column>
+        <el-table-column prop="start_date" label="Start date"></el-table-column>
+        <el-table-column prop="salary" label="Salary"></el-table-column>
+      </el-table>
+    </el-card>
 
-    <h3 class="mt-2">边框表格</h3>
-    <el-table :data="rows" stripe border>
-      <el-table-column prop="name" label="Name"></el-table-column>
-      <el-table-column prop="position" label="Position"></el-table-column>
-      <el-table-column prop="office" label="Office"></el-table-column>
-      <el-table-column prop="extn" label="Extn."></el-table-column>
-      <el-table-column prop="start_date" label="Start date"></el-table-column>
-      <el-table-column prop="salary" label="Salary"></el-table-column>
-    </el-table>
+    <el-card class="mt-3">
+      <div class="mb-3">边框表格</div>
+      <el-table :data="rows" stripe border>
+        <el-table-column prop="name" label="Name"></el-table-column>
+        <el-table-column prop="position" label="Position"></el-table-column>
+        <el-table-column prop="office" label="Office"></el-table-column>
+        <el-table-column prop="extn" label="Extn."></el-table-column>
+        <el-table-column prop="start_date" label="Start date"></el-table-column>
+        <el-table-column prop="salary" label="Salary"></el-table-column>
+      </el-table>
+    </el-card>
   </div>
 </template>
 <script>

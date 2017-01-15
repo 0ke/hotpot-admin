@@ -14,8 +14,6 @@
   },
   "dependencies": {
     "bootstrap": "^4.0.0-alpha.6",
-    "echarts": "^3.3.2",
-    "element-ui": "^1.0.8",
     "fullcalendar": "^3.1.0",
     "quill": "^1.1.9",
     "vue": "^2.1.8",

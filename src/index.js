@@ -1,9 +1,3 @@
-import ElementUI from 'element-ui'
-import VueAxios from 'vue-axios'
-
-Vue.use(ElementUI)
-Vue.use(VueAxios, axios)
-
 import routes from './routers'
 import layout from './pages/layout'
 

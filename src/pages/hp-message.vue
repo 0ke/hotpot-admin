@@ -1,31 +1,29 @@
 <template>
-  <el-dropdown trigger="click">
+  <el-dropdown class="msg">
     <a href="javascript:;" class="el-dropdown-link">
       <el-badge :value="7">
         <i class="fa fa-envelope-o"></i>
       </el-badge>
     </a>
-    <el-dropdown-menu slot="dropdown">
+    <el-dropdown-menu slot="dropdown" class="msg-panel">
       <li>
-        <div class="d-flex justify-content-between">
-          <strong>Messages</strong>
-          <a href>Mark All as Read</a>
-          <a href>Settings</a>
+        <div class="header p-2">
+          <strong>消息</strong>
+          <a href class="float-right">设置</a>
+          <a href class="float-right mr-3">全部标记已读</a>
         </div>
-      </li>
-      <el-dropdown-item v-for="msg in messages">
-        <div class="d-flex">
-          <div><img src="holder.js/55x55"></div>
-          <div>
-            <p class="text-justify">{{ msg.text }}</p>
-            <span>{{ msg.time }}</span>
-          </div>
+        <div class="msg-list">
+          <a href v-for="msg in messages" class="clearfix">
+            <div class="img-area">
+              <img src="holder.js/40x40">
+            </div>
+            <div class="msg-area">
+              <div>{{msg.text}}</div>
+              <span>{{ msg.time }}</span>
+            </div>
+          </a>
         </div>
-      </el-dropdown-item>
-      <li>
-        <div class="d-flex justify-content-center">
-          <a href>See all messages...</a>
-        </div>
+        <a href class="msg-all text-center p-2">查看所有消息</a>
       </li>
     </el-dropdown-menu>
   </el-dropdown>

@@ -1,19 +1,22 @@
 <template>
   <div>
-    <h3>分页表格</h3>
-    <el-table :data="tableData.rows" stripe>
-      <el-table-column type="index" width="60"></el-table-column>
-      <el-table-column prop="name" label="Name"></el-table-column>
-      <el-table-column prop="position" label="Position"></el-table-column>
-      <el-table-column prop="office" label="Office"></el-table-column>
-      <el-table-column prop="extn" label="Extn."></el-table-column>
-      <el-table-column prop="start_date" label="Start date"></el-table-column>
-      <el-table-column prop="salary" label="Salary"></el-table-column>
-    </el-table>
-    <el-pagination class="float-xs-right mt-1" :page-sizes="[10, 20, 30, 40]" :page-size="tableData.pageSize"
-                   layout="total, sizes, prev, pager, next, jumper" :total="tableData.total" :current-page="currentPage"
-                   @size-change="pageSizeChange" @current-change="currentPageChange">
-    </el-pagination>
+    <el-card>
+      <div class="mb-3">分页表格</div>
+      <el-table :data="tableData.rows" stripe>
+        <el-table-column type="index" width="60"></el-table-column>
+        <el-table-column prop="name" label="Name"></el-table-column>
+        <el-table-column prop="position" label="Position"></el-table-column>
+        <el-table-column prop="office" label="Office"></el-table-column>
+        <el-table-column prop="extn" label="Extn."></el-table-column>
+        <el-table-column prop="start_date" label="Start date"></el-table-column>
+        <el-table-column prop="salary" label="Salary"></el-table-column>
+      </el-table>
+      <el-pagination class="float-right mt-1" :page-sizes="[10, 20, 30, 40]" :page-size="tableData.pageSize"
+                     layout="total, sizes, prev, pager, next, jumper" :total="tableData.total"
+                     :current-page="currentPage"
+                     @size-change="pageSizeChange" @current-change="currentPageChange">
+      </el-pagination>
+    </el-card>
   </div>
 </template>
 <script>

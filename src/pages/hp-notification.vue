@@ -1,32 +1,29 @@
 <template>
-  <el-dropdown trigger="click">
+  <el-dropdown class="msg">
     <a href="javascript:;" class="el-dropdown-link">
       <el-badge :value="5">
         <i class="fa fa-bell-o"></i>
       </el-badge>
     </a>
-    <el-dropdown-menu slot="dropdown">
+    <el-dropdown-menu slot="dropdown" class="msg-panel">
       <li>
-        <div class="d-flex justify-content-between">
-          <strong>Notifications</strong>
-          <a href>Mark All as Read</a>
-          <a href>Settings</a>
+        <div class="header p-2">
+          <strong>通知</strong>
+          <a href class="float-right">设置</a>
+          <a href class="float-right mr-3">全部标记已读</a>
         </div>
-      </li>
-      <el-dropdown-item v-for="msg in notifications">
-        <div class="d-flex">
-          <div>
-            <a class="media-left" href="#">
-              <img src="holder.js/55x55">
-            </a>
-          </div>
-          <div class="align-self-center pl-1" v-html="getMessage(msg)"></div>
+        <div class="msg-list">
+          <a href v-for="msg in notifications" class="clearfix">
+            <div class="img-area">
+              <img src="holder.js/40x40">
+            </div>
+            <div class="msg-area">
+              <div v-html="getMessage(msg)"></div>
+              <span>1 min ago</span>
+            </div>
+          </a>
         </div>
-      </el-dropdown-item>
-      <li>
-        <div class="d-flex justify-content-center">
-          <a href>See all notifications...</a>
-        </div>
+        <a href class="msg-all text-center p-2">查看所有通知</a>
       </li>
     </el-dropdown-menu>
   </el-dropdown>

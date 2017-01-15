@@ -1,5 +1,7 @@
 <template>
-  <div></div>
+  <el-card>
+    <div ref="chart"></div>
+  </el-card>
 </template>
 <script>
   let options = {
@@ -52,8 +54,8 @@
     },
     mounted() {
       let that = this
-      require(['echarts'], function (echarts) {
-        let chart = echarts.init(that.$el, null, {
+      $script(configs.ECHARTS_SCRIPT_URL, function () {
+        let chart = echarts.init(that.$refs.chart, null, {
           height: 600
         })
         chart.setOption(options)

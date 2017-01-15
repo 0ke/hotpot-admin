@@ -65,7 +65,8 @@ module.exports = function (options) {
       alias: {
         components: helpers.root('src/components'),
         assets: helpers.root('src/assets'),
-        pages: helpers.root('src/pages')
+        pages: helpers.root('src/pages'),
+        configs: helpers.root('src/configs')
       }
     },
     externals: {
@@ -252,7 +253,10 @@ module.exports = function (options) {
        *
        * See: https://gist.github.com/sokra/27b24881210b56bbaff7
        */
-      new LoaderOptionsPlugin({})
+      new LoaderOptionsPlugin({}),
+      new webpack.ProvidePlugin({
+        'configs': 'configs'
+      })
     ],
 
     /*
