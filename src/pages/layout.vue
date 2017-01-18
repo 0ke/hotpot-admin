@@ -43,6 +43,6 @@
 
 <style lang="scss">
   @import "../../node_modules/bootstrap/scss/bootstrap";
-  @import "../element-theme/index.css";
+  @import "../element-theme.bak/index.css";
   @import "../scss/main";
 </style>

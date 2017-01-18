@@ -70,7 +70,7 @@
             <el-col :span="11">
               <el-form-item prop="date1">
                 <el-date-picker type="date" placeholder="选择日期" v-model="ruleForm.date1"
-                                style="width: 250px;"></el-date-picker>
+                                style="width: 260px;"></el-date-picker>
               </el-form-item>
             </el-col>
             <el-col class="line" :span="1">-</el-col>

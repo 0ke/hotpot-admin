@@ -5,6 +5,45 @@ const menus = [
     icon: 'fa fa-dashboard'
   },
   {
+    name: 'ui.features',
+    title: 'UI Features',
+    icon: 'fa fa-laptop',
+    submenus: [
+      {
+        name: 'ui.typography',
+        title: 'Typography'
+      },
+      {
+        name: 'ui.buttons',
+        title: 'Buttons'
+      },
+      {
+        name: 'ui.icons',
+        title: 'Icons'
+      },
+      {
+        name: 'ui.modals',
+        title: 'Modals'
+      },
+      {
+        name: 'ui.alerts',
+        title: 'Alerts'
+      },
+      {
+        name: 'ui.notifications',
+        title: 'Notifications'
+      },
+      {
+        name: 'ui.sliders',
+        title: 'Sliders'
+      },
+      {
+        name: 'ui.tabs&accordions',
+        title: 'Tabs & Accordions'
+      }
+    ]
+  },
+  {
     title: 'Forms',
     icon: 'fa fa-edit',
     submenus: [

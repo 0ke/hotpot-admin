@@ -22,6 +22,10 @@ export default [
     component: dashboard
   },
   {
+    name: 'ui.features',
+    path: '/ui-features',
+  },
+  {
     name: 'forms.basicForms',
     path: '/forms/basic-form',
     component: basicForm

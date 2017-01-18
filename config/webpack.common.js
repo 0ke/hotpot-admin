@@ -14,6 +14,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
 const CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 
 const METADATA = {
   title: 'hotpot-admin - Vue.js 2 后台管理模板',
@@ -126,7 +127,7 @@ module.exports = function (options) {
         },
         {
           test: /\.woff(2)?(\?v=.+)?$/,
-          loader: 'url-loader?name=static/[md5:hash:hex].[ext]&limit=10000&mimetype=application/font-woff'
+          loader: 'url-loader?name=static/[md5:hash:hex].[ext]&&limit=10000&mimetype=application/font-woff'
         },
         {
           test: /\.(ttf|eot|svg)(\?v=.+)?$/,
@@ -246,6 +247,26 @@ module.exports = function (options) {
        */
       new HtmlElementsPlugin({
         headTags: require('./head-config.common')
+      }),
+
+      /**
+       * See: https://github.com/jantimon/favicons-webpack-plugin
+       */
+      new FaviconsWebpackPlugin({
+        logo: helpers.root('src/assets/icon/favicon.png'),
+        prefix: 'icons-[hash]/',
+        icons: {
+          android: true,
+          appleIcon: true,
+          appleStartup: true,
+          favicons: true,
+          firefox: true,
+          coast: false,
+          opengraph: false,
+          twitter: false,
+          yandex: false,
+          windows: false
+        }
       }),
 
       /**

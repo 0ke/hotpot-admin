@@ -54,7 +54,7 @@
 
       let mapMenu = (menus) => {
         menus.forEach(function (m) {
-          if (m.name) {
+          if (m.name && _routes[m.name]) {
             m.path = _routes[m.name].path
           } else {
             m.path = Math.random() + ''
