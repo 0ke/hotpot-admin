@@ -1,10 +1,16 @@
 import dashboard from './pages/dashboard/dashboard'
 
+// ui features
+import typography from './pages/ui-features/typography.vue'
+import buttons from './pages/ui-features/buttons.vue'
+
+// forms
 import basicForm from './pages/forms/basic-form'
 import validationForm from './pages/forms/form-validation.vue'
 import advancedElements from './pages/forms/advanced-elements.vue'
 import wysiwygEditor from './pages/forms/wysiwyg-editor.vue'
 
+// tables
 import basicTables from './pages/tables/basic-table'
 import pageTables from './pages/tables/page-table'
 
@@ -22,8 +28,14 @@ export default [
     component: dashboard
   },
   {
-    name: 'ui.features',
-    path: '/ui-features',
+    name: 'ui.typography',
+    path: '/ui-features/typography',
+    component: typography
+  },
+  {
+    name: 'ui.buttons',
+    path: '/ui-features/buttons',
+    component: buttons
   },
   {
     name: 'forms.basicForms',
