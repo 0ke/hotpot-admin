@@ -1,20 +1,14 @@
 <template>
   <div>
-    <el-row gutter="20" class="mb-3">
-      <el-col span="12">
-        <el-card>
-          <div class="mb-3">介绍</div>
-          <div>
-            <p class="text-justify">HotpotAdmin 是采用 <a href="//cn.vuejs.org/" target="_blank">Vue.js 2.0</a> 与 <a
-              href="//element.eleme.io/" target="_blank">element-ui</a> 开发的免费开源后台管理模板</p>
-            <p class="text-justify"><a href="//github.com/kevin70/hotpot-admin" target="_blank">GitHub 地址</a></p>
-            <p class="text-justify">有任何问题可以联系 <a href="mailto:kevinz@weghst.com">kevinz@weghst.com</a></p>
-          </div>
-        </el-card>
-      </el-col>
-      <el-col span="12">
-      </el-col>
-    </el-row>
+    <el-card class="mb-3">
+      <div class="mb-3">介绍</div>
+      <div>
+        <p class="text-justify">HotpotAdmin 是采用 <a href="//cn.vuejs.org/" target="_blank">Vue.js 2.0</a> 与 <a
+          href="//element.eleme.io/" target="_blank">element-ui</a> 开发的免费开源后台管理模板</p>
+        <p class="text-justify"><a href="//github.com/kevin70/hotpot-admin" target="_blank">GitHub 地址</a></p>
+        <p class="text-justify">有任何问题可以联系 <a href="mailto:kevinz@weghst.com">kevinz@weghst.com</a></p>
+      </div>
+    </el-card>
 
     <el-row gutter="20">
       <el-col span="6">
@@ -98,29 +92,14 @@
         </el-card>
       </el-col>
     </el-row>
-
-    <div class="row">
-      <div class="col-sm-6">
-        <visit-chart></visit-chart>
-      </div>
-      <div class="col-sm-6">
-        <div class="card">
-          <div class="card-block">
-            <calendar></calendar>
-          </div>
-        </div>
-      </div>
-    </div>
-
   </div>
 </template>
 
 <script>
   import visitChart from './visit-chart'
-  import calendar from './calendar'
   export default {
     name: 'dashboard',
-    components: {visitChart, calendar},
+    components: {visitChart},
     data: function () {
       let data = []
 
